@@ -1,6 +1,6 @@
 export const AddUser = ()=> {
     return (
-        <div>
+        <div id="#addUser">
             <h2>Crear un nuevo usario</h2>
         </div>
     )

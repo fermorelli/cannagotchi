@@ -2,11 +2,12 @@ import { AddUser } from './components/addUser/AddUser';
 import { EditUser } from './components/editUser.jsx/EditUser';
 import { UserList } from './components/userList/UserList';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { Nav } from './components/nav/nav';
 
 function App() {
   return (
     <div className="App">
-      <h1>Crud MERN stack</h1>
+      <Nav />
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<UserList />} exact></Route>
