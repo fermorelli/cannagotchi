@@ -1,10 +1,9 @@
-const express = require('express');
+import express from 'express';
 const app = express();
-const dataDb = require('../src/connection');
+import dataDb from '../src/connection.js';
+import router from './routes.js';
 
-app.get('/', (req, res)=> {
-    res.end('Server running')
-})
+app.get('/', router)
 
 app.listen(8080, ()=>{
     console.log('Server running properly')
