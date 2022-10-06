@@ -82,7 +82,7 @@ const deleteUser = async (req, res) => {
           error: true,
         });
       }
-      const result = await User.findByIdAndDelete(req.params.id);
+      const result = await Users.findByIdAndDelete(req.params.id);
       if (!result) {
         return res.status(404).json({
           message: `User with ID ${req.params.id} has not been found`,
@@ -102,3 +102,47 @@ const deleteUser = async (req, res) => {
       });
     }
   };
+
+  const updateUser = async (req, res) => {
+    try {
+      if (!req.params) {
+        return res.status(404).json({
+          message: 'Missing id parameter',
+          data: undefined,
+          error: true,
+        });
+      }
+      const result = await Users.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true },
+      );
+  
+      if (!result) {
+        return res.status(404).json({
+          message: 'User has not been found',
+          data: undefined,
+          error: true,
+        });
+      }
+      return res.status(200).json({
+        message: 'User successfully updated',
+        data: result,
+        error: false,
+      });
+    } catch (error) {
+      return res.status(400).json({
+        message: error,
+        data: undefined,
+        error: true,
+      });
+    }
+  };
+
+  export default {
+    createUser,
+    getAllUsers,
+    getUserById,
+    updateUser,
+    deleteUser
+  }
