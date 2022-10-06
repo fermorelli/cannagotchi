@@ -8,13 +8,15 @@ export const AddUser = ()=> {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
 
-    const addUser = ()=>{
+    const addUser = (e)=>{
+        e.preventDefault();
         let user = {
             firstName: firstName,
             lastName: lastName,
             email: email,
             password: password
         }
+        console.log(user);
     }
 
 
