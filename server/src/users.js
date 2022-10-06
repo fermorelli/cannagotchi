@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const schema = mongoose.Schema();
+const { v4: uiidv4} = require('uuid');
 
 const userSchema = new schema({
     firstName : {
@@ -19,7 +20,8 @@ const userSchema = new schema({
     password : {
         type: String,
         required: true,
-    }
+    },
+    id : uuidv4(),
 })
 
 export default mongoose.model('Users', userSchema);
