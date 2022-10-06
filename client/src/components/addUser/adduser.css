@@ -1,0 +1,27 @@
+.all {
+    width: 80%;
+    margin: 4rem auto;
+}
+
+.form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.all h2 {
+    margin-bottom: 2rem;
+}
+
+.form input {
+    width: 30%;
+    height: 2rem;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+}
+
+.form button {
+    margin-top: 1rem;
+    width: 100px;
+    height: 30px;
+}
