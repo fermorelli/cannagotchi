@@ -40,7 +40,7 @@ const getUserById  = async (req, res) => {
             error: false,
         });
     } catch (error) {
-        return res.status(400),json({
+        return res.status(400).json({
             message: error.message,
             data: {},
             error: true,

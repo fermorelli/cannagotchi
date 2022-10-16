@@ -1,7 +1,7 @@
 import { AddUser } from './components/addUser/AddUser';
 import { EditUser } from './components/editUser.jsx/EditUser';
 import { UserList } from './components/userList/UserList';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Nav } from './components/nav/nav';
 
 function App() {
