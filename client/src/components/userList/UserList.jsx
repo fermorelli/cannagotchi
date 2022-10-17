@@ -7,21 +7,21 @@ export const UserList = ()=> {
     const [ users, setUsers ] = useState([]);
 
     const getUsers = async () =>{
-        const response = await fetch('http://localhost:5000/');
-        const data = response.json();
+        const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        const data = await response.json();
         setUsers(data);
     }
 
     useEffect(()=>{
         getUsers();
-    })
+    },[])
 
     console.log(users);
 
     return (
         <div id="#home">
             <h2>Lista de usuarios</h2>
-            <p>{users.map((user)=>{return(<p>{user.firstName}</p>)})}</p>
+            <p>{users.map((user)=>{return(<p>{user.name}</p>)})}</p>
             <GetUser />
         </div>
     )
