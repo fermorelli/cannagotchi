@@ -1,14 +1,17 @@
-import mongoose from 'mongoose';
+import mongoose, { mongo } from 'mongoose';
 import app from './app.js';
 
-mongoose.connect('mongodb://127.0.0.1:27017/crud', (error) => {
+mongoose.connect('mongodb://localhost:27017/crud', (error) => {
+  const port = 8080;
     if (error) {
       console.log('Fail to connect', error);
     } else {
       console.log('Connected to database');
-      app.listen(5000, () => {
-        console.log(`Example app listening on port 5000`);
+      app.listen(port, () => {
+        console.log(`Example app listening on port ${port}`);
       });
     }
   },
 );
+
+export default mongoose;
