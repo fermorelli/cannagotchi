@@ -48,3 +48,17 @@
     font-size: 0.8rem;
     text-decoration: underline;
 }
+
+.formButtons {
+    display: flex;
+    gap: 2rem;
+}
+
+.formButtons button {
+    font-family:'Poppins', sans-serif;
+    cursor: pointer;
+}
+
+.formButtons button:hover{
+    transform: scale(1.05);
+}

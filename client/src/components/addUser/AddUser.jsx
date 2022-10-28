@@ -74,9 +74,15 @@ export const AddUser = ()=> {
                     <input type="mail" value={email} onChange={(e)=>{setEmail(e.target.value)}} />
                     <label htmlFor="">Password</label>
                     <input type="password" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
-                    <button type="submit" onClick={addUser}>Add</button>
+                    <div className='formButtons'>
+                        <button type="submit" onClick={addUser}>Add</button>
+                        <Link to={'/'}>
+                            <button>Go back</button>
+                        </Link>
+                    </div>
                 </form>
             </div>
+
         </div>
     )
 }
