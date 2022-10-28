@@ -16,3 +16,14 @@
 .userCard h3 {
     font-weight: bold;
 }
+
+.header {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.headerButtons{
+    display: flex;
+    gap: 0.5rem;
+}

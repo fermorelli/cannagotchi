@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { GetUser } from "../getUser.jsx/GetUser"
 import './userlist.css';
+import { BsFillPencilFill } from 'react-icons/bs';
+import { GoTrashcan } from 'react-icons/go'
 
 export const UserList = ()=> {
 
@@ -26,7 +27,13 @@ export const UserList = ()=> {
                 {users.map((user)=>{
                     return(
                         <div className="userCard">
-                            <h3>{user.firstName} {user.lastName}</h3>
+                            <div className="header">
+                                <h3>{user.firstName} {user.lastName}</h3>
+                                <div className="headerButtons">
+                                    <BsFillPencilFill />
+                                    <GoTrashcan />
+                                </div>
+                            </div>
                             <span>{user.email}</span>
                         </div>
                     )})
