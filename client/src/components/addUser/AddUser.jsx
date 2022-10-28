@@ -10,20 +10,30 @@ export const AddUser = ()=> {
 
     const addUser = (e)=>{
         e.preventDefault();
-        let user = {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password
-        }
-        console.log(user);
-    }
 
+        fetch('http://localhost:8080', {
+            method: 'POST',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password
+            })})
+
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+        }
 
     return (
         <div className="all">
             <div className="title">
-                <h2>Crear un nuevo usario</h2>
+                <h2>Add a new user</h2>
             </div>
             <div className="form">
                 <form action="">

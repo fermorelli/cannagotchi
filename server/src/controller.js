@@ -55,7 +55,6 @@ const createUser = async (req, res) => {
             lastName: req.body.lastName,
             email: req.body.email,
             password: req.body.password,
-            id: req.body.uuidv4(),
         });
 
         const result = await user.save();

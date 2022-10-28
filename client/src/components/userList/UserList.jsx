@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { GetUser } from "../getUser.jsx/GetUser"
+import './userlist.css';
 
 export const UserList = ()=> {
 
@@ -12,15 +13,25 @@ export const UserList = ()=> {
         setUsers(data.data);
     }
 
+    console.log(users);
+
     useEffect(()=>{
         getUsers();
-    },[users])
+    },[])
 
     return (
-        <div id="#home">
-            <h2>Lista de usuarios</h2>
-            <p>{users.map((user)=>{return(<p>{user.firstName}</p>)})}</p>
-            <GetUser />
+        <div id="#home" className="all">
+            <h2 className="title">Users List</h2>
+            <div className="userList">
+                {users.map((user)=>{
+                    return(
+                        <div className="userCard">
+                            <h3>{user.firstName} {user.lastName}</h3>
+                            <span>{user.email}</span>
+                        </div>
+                    )})
+                }
+            </div>
         </div>
     )
 }
