@@ -28,8 +28,10 @@ export const AddUser = ()=> {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data)
-                isSuccess(true);
-                setIsOpen(true);
+                if(data.error===false){
+                    isSuccess(true)
+                    setIsOpen(true)
+                }
             })
             .catch((err) => {
                 console.log(err.message);
@@ -48,14 +50,16 @@ export const AddUser = ()=> {
     return (
         <div className="all">
             {isOpen &&
-            <Modal setIsOpen={setIsOpen} modalTitle={success===true? "User successfully added" : "Something went wrong"}>
-                <p>asd</p>
-                <Link to={'/'}>
-                    <button onClick={handleClose}>Go back</button>
-                </Link>
-                <Link to={'/add-user'}>
-                    <span onClick={handleClose}>Add another user</span>
-                </Link>
+            <Modal setIsOpen={setIsOpen} modalTitle={success===true? "Success" : "Something went wrong"}>
+                <p>{success ? "User successfully added" : null}</p>
+                <div className='modalButtons'>
+                    <Link to={'/'}>
+                        <button onClick={handleClose}>Go back</button>
+                    </Link>
+                    <Link to={'/add-user'}>
+                        <span onClick={handleClose}>Add another user</span>
+                    </Link>
+                </div>
             </Modal>}
             <div className="title">
                 <h2>Add a new user</h2>

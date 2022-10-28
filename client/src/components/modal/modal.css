@@ -23,17 +23,14 @@
 	min-width: 350px;
 	max-width: 800px;
 	max-height: 90vh;
+	text-align: center;
 }
 
 .modalHeader {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	height: 16px;
 	line-height: 16px;
 	font-size: 20px;
-	font-weight: 700;
-	margin-bottom: 10px;
+	font-weight: 500;
+	margin-bottom: 20px;
 	margin-top: 20px;
 	margin-right: 10px;
 }
