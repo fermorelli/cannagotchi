@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import Modal from '../modal/modal';
+import { Link } from 'react-router-dom';
 import './adduser.css'
 
 export const AddUser = ()=> {
@@ -7,6 +9,8 @@ export const AddUser = ()=> {
     const [ lastName, setLastName ] = useState('');
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+    const [ isOpen, setIsOpen ] = useState(false);
+    const [ success, isSuccess ] = useState(false);
 
     const addUser = (e)=>{
         e.preventDefault();
@@ -24,14 +28,35 @@ export const AddUser = ()=> {
             .then((response) => response.json())
             .then((data) => {
                 console.log(data)
+                isSuccess(true);
+                setIsOpen(true);
             })
             .catch((err) => {
                 console.log(err.message);
+                isSuccess(false);
             });
         }
 
+    const handleClose = ()=>{
+        setIsOpen(false);
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPassword('');
+    }
+
     return (
         <div className="all">
+            {isOpen &&
+            <Modal setIsOpen={setIsOpen} modalTitle={success===true? "User successfully added" : "Something went wrong"}>
+                <p>asd</p>
+                <Link to={'/'}>
+                    <button onClick={handleClose}>Go back</button>
+                </Link>
+                <Link to={'/add-user'}>
+                    <span onClick={handleClose}>Add another user</span>
+                </Link>
+            </Modal>}
             <div className="title">
                 <h2>Add a new user</h2>
             </div>
@@ -45,8 +70,6 @@ export const AddUser = ()=> {
                     <input type="mail" value={email} onChange={(e)=>{setEmail(e.target.value)}} />
                     <label htmlFor="">Password</label>
                     <input type="password" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
-                    <label htmlFor="">Confirm Password</label>
-                    <input type="password" />
                     <button type="submit" onClick={addUser}>Add</button>
                 </form>
             </div>
