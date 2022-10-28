@@ -20,10 +20,18 @@
 .header {
     display: flex;
     gap: 2rem;
-    align-items: center;
 }
 
 .headerButtons{
     display: flex;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.headerButtons a {
+    margin-top: 4px;
+}
+
+.headerButtons svg {
+    cursor: pointer;
 }
