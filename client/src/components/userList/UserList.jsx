@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import './userlist.css';
 import { BsFillPencilFill } from 'react-icons/bs';
 import { GoTrashcan } from 'react-icons/go'
@@ -58,7 +57,7 @@ export const UserList = ()=> {
                             <div className="header">
                                 <h3>{user.firstName} {user.lastName}</h3>
                                 <div className="headerButtons">
-                                    <Link to={'/edit-user'}>
+                                    <Link to={`/edit-user/${user._id}`}>
                                         <BsFillPencilFill />
                                     </Link>
                                     <GoTrashcan onClick={()=>deleteUser(user._id)}/>
