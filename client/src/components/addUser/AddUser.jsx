@@ -52,7 +52,7 @@ export const AddUser = ()=> {
             {isOpen &&
             <Modal setIsOpen={setIsOpen} modalTitle={success===true? "Success" : "Something went wrong"}>
                 <p>{success ? "User successfully added" : null}</p>
-                <div className='modalButtons'>
+                <div className='addModalButtons'>
                     <Link to={'/'}>
                         <button onClick={handleClose}>Go back</button>
                     </Link>

@@ -26,7 +26,7 @@
     height: 30px;
 }
 
-.modalButtons {
+.addModalButtons {
     display: flex;
     flex-direction: column;
     margin-top: 30px;
@@ -34,7 +34,7 @@
     gap: 0.5rem;
 }
 
-.modalButtons button{
+.addModalButtons button{
     background: var(--color-bg-variant);
 	color: white;
     padding: 3px 10px;
@@ -44,7 +44,7 @@
 	outline: inherit;
 }
 
-.modalButtons span{
+.addModalButtons span{
     font-size: 0.8rem;
     text-decoration: underline;
 }

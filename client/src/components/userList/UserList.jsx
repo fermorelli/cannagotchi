@@ -4,13 +4,11 @@ import './userlist.css';
 import { BsFillPencilFill } from 'react-icons/bs';
 import { GoTrashcan } from 'react-icons/go'
 import { Link } from "react-router-dom";
-import { Modal } from '../modal/modal';
 import swal from 'sweetalert';
 
 export const UserList = ()=> {
 
     const [ users, setUsers ] = useState([]);
-    const [ isOpen, setIsOpen ] = useState(false);
 
     const getUsers = async () =>{
         const response = await fetch('http://localhost:8080/users');
@@ -24,17 +22,30 @@ export const UserList = ()=> {
 
 
     const deleteUser = (id)=>{
-        fetch(`http://localhost:8080/${id}`, {method: 'DELETE'})
-        .then((response)=> {
-            if(!response.ok){
-                throw new Error('Something went wrong')
-            }else{
-                setUsers(users.filter(item=>item._id !== id))
-                setIsOpen(false);
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                fetch(`http://localhost:8080/${id}`, {method: 'DELETE'})
+                .then((response)=> {
+                    if(!response.ok){
+                        throw new Error('Something went wrong')
+                    }else{
+                        setUsers(users.filter(item=>item._id !== id))
+                    }
+            }).catch((e)=>console.log(e))
+            swal("Poof! Your imaginary file has been deleted!", {
+                icon: "success",
+            });
+            } else {
+              swal("Your imaginary file is safe!");
             }
-        }).catch((e)=>console.log(e))
-
-        console.log('id:',id)
+          });
     }
 
     return (
@@ -44,22 +55,13 @@ export const UserList = ()=> {
                 {users.map((user)=>{
                     return(
                         <div className="userCard" key={user._id}>
-                        {isOpen &&
-                            <Modal setIsOpen={setIsOpen} modalTitle={'Are you sure you want to delete this user?'}>
-                                <div className="modalButtons">
-                                    <button onClick={()=>deleteUser(user._id)}>Delete</button>
-                                    <Link to={'/'}>
-                                        <button onClick={()=>setIsOpen(false)}>Go back</button>
-                                    </Link>
-                                </div>
-                            </Modal>}
                             <div className="header">
                                 <h3>{user.firstName} {user.lastName}</h3>
                                 <div className="headerButtons">
                                     <Link to={'/edit-user'}>
                                         <BsFillPencilFill />
                                     </Link>
-                                    <GoTrashcan onClick={()=>setIsOpen(true)}/>
+                                    <GoTrashcan onClick={()=>deleteUser(user._id)}/>
                                 </div>
                             </div>
                             <span>{user.email}</span>
