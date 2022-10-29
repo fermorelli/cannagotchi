@@ -24,7 +24,7 @@ export const UserList = ()=> {
     const deleteUser = (id)=>{
         swal({
             title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
+            text: "Once deleted, you will not be able to recover this user!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -39,11 +39,11 @@ export const UserList = ()=> {
                         setUsers(users.filter(item=>item._id !== id))
                     }
             }).catch((e)=>console.log(e))
-            swal("Poof! Your imaginary file has been deleted!", {
+            swal("User successfully deleted", {
                 icon: "success",
             });
             } else {
-              swal("Your imaginary file is safe!");
+              swal("User is safe from deletion");
             }
           });
     }
