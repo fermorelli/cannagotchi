@@ -5,6 +5,7 @@ import { BsFillPencilFill } from 'react-icons/bs';
 import { GoTrashcan } from 'react-icons/go'
 import { Link } from "react-router-dom";
 import { Modal } from '../modal/modal';
+import swal from 'sweetalert';
 
 export const UserList = ()=> {
 
@@ -21,40 +22,44 @@ export const UserList = ()=> {
         getUsers();
     },[])
 
+
     const deleteUser = (id)=>{
         fetch(`http://localhost:8080/${id}`, {method: 'DELETE'})
         .then((response)=> {
             if(!response.ok){
                 throw new Error('Something went wrong')
             }else{
-                setIsOpen(true)
                 setUsers(users.filter(item=>item._id !== id))
+                setIsOpen(false);
             }
         }).catch((e)=>console.log(e))
 
         console.log('id:',id)
-}
+    }
 
     return (
         <div id="#home" className="all">
             <h2 className="title">Users List</h2>
             <div className="userList">
-            {isOpen &&
-                <Modal setIsOpen={setIsOpen} modalTitle={'User successfully deleted'}>
-                    <Link to={'/'}>
-                        <button onClick={()=>setIsOpen(false)}>Go back</button>
-                    </Link>
-                </Modal>}
                 {users.map((user)=>{
                     return(
                         <div className="userCard" key={user._id}>
+                        {isOpen &&
+                            <Modal setIsOpen={setIsOpen} modalTitle={'Are you sure you want to delete this user?'}>
+                                <div className="modalButtons">
+                                    <button onClick={()=>deleteUser(user._id)}>Delete</button>
+                                    <Link to={'/'}>
+                                        <button onClick={()=>setIsOpen(false)}>Go back</button>
+                                    </Link>
+                                </div>
+                            </Modal>}
                             <div className="header">
                                 <h3>{user.firstName} {user.lastName}</h3>
                                 <div className="headerButtons">
                                     <Link to={'/edit-user'}>
                                         <BsFillPencilFill />
                                     </Link>
-                                    <GoTrashcan onClick={()=>deleteUser(user._id)}/>
+                                    <GoTrashcan onClick={()=>setIsOpen(true)}/>
                                 </div>
                             </div>
                             <span>{user.email}</span>

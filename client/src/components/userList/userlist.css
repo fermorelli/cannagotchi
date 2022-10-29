@@ -35,3 +35,21 @@
 .headerButtons svg {
     cursor: pointer;
 }
+
+.modalButtons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.modalButtons button{
+    background: var(--color-bg-variant);
+	color: white;
+    padding: 3px 10px;
+    border-radius: 5px;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}

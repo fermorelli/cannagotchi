@@ -7,14 +7,14 @@ import { Nav } from './components/nav/nav';
 function App() {
   return (
     <div className="App">
-      <Router basename={process.env.PUBLIC_URL}>
-      <Nav />
-        <Routes>
-          <Route path='/' element={<UserList />} exact></Route>
-          <Route path='/add-user' element={<AddUser />} exact></Route>
-          <Route path='/edit-user' element={<EditUser />} exact></Route>
-        </Routes>
-      </Router>
+        <Router basename={process.env.PUBLIC_URL}>
+        <Nav />
+          <Routes>
+            <Route path='/' element={<UserList />} exact></Route>
+            <Route path='/add-user' element={<AddUser />} exact></Route>
+            <Route path='/edit-user' element={<EditUser />} exact></Route>
+          </Routes>
+        </Router>
     </div>
   );
 }
