@@ -116,7 +116,6 @@ const deleteUser = async (req, res) => {
         req.body,
         { new: true },
       );
-  
       if (!result) {
         return res.status(404).json({
           message: 'User has not been found',

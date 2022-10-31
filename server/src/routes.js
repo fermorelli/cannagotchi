@@ -6,7 +6,7 @@ const router = express.Router();
 router
   .post('/', Controllers.createUser)
   .get('/users', Controllers.getAllUsers)
-  .get('/:id', Controllers.getUserById)
+  .get('/users/:id', Controllers.getUserById)
   .put('/:id', Controllers.updateUser)
   .delete('/:id', Controllers.deleteUser);
 

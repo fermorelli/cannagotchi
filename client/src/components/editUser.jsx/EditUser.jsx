@@ -17,12 +17,15 @@ export const EditUser = ()=> {
     const params = useParams();
     const id = params.id;
 
-    useEffect(()=>{
-        fetch(`http://localhost:8080/${id}`)
-        .then((response)=>response.json())
-        .then((data)=>setData(data.data))}, [])
+    const getUser = async () =>{
+        const response = await fetch(`http://localhost:8080/users/${id}`);
+        const data = await response.json();
+        setData(data.data);
+    }
 
-    console.log('full data: ', data);
+    useEffect(()=>{
+        getUser();
+    },[])
 
     const handleClose = ()=>{
         setIsOpen(false);
@@ -31,6 +34,35 @@ export const EditUser = ()=> {
         setEmail('');
         setPassword('');
     }
+
+    const editUser = (e) =>{
+        e.preventDefault();
+
+        fetch(`http://localhost:8080/${id}`, {
+            method: 'PUT',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password
+            })})
+
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+                if(data.error===false){
+                    isSuccess(true)
+                    setIsOpen(true)
+                }
+            })
+            .catch((err) => {
+                console.log(err.message);
+                isSuccess(false);
+            });
+    }
+
+    console.log(data.firstName);
 
     return (
         <div className="all">
@@ -49,15 +81,15 @@ export const EditUser = ()=> {
             <div className="form">
                 <form action="">
                     <label htmlFor="">First Name</label>
-                    <input type="text" defaultValue={data.firstName} value={firstName} onChange={(e)=>{setFirstName(e.target.value)}}/>
+                    <input type="text" placeholder={data.firstName} value={firstName} onChange={(e)=>{setFirstName(e.target.value)}}/>
                     <label htmlFor="">Last Name</label>
-                    <input type="text" value={lastName} onChange={(e)=>{setLastName(e.target.value)}}/>
+                    <input type="text" placeholder={data.lastName} value={lastName} onChange={(e)=>{setLastName(e.target.value)}}/>
                     <label htmlFor="">Email</label>
-                    <input type="mail" value={email} onChange={(e)=>{setEmail(e.target.value)}} />
+                    <input type="mail" placeholder={data.email} value={email} onChange={(e)=>{setEmail(e.target.value)}} />
                     <label htmlFor="">Password</label>
-                    <input type="password" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
+                    <input type="password" placeholder={data.password} value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
                     <div className='formButtons'>
-                        <button type="submit">Add</button>
+                        <button type="submit" onClick={editUser}>Update</button>
                         <Link to={'/'}>
                             <button>Go back</button>
                         </Link>
