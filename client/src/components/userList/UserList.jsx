@@ -8,6 +8,7 @@ import swal from 'sweetalert';
 export const UserList = ()=> {
 
     const [ users, setUsers ] = useState([]);
+    const [ show, setShow ] = useState(false);
 
     const getUsers = async () =>{
         const response = await fetch('http://localhost:8080/users');
@@ -41,26 +42,30 @@ export const UserList = ()=> {
             swal("User successfully deleted", {
                 icon: "success",
             });
-            } else {
-              swal("User is safe from deletion");
             }
           });
     }
 
     return (
         <div id="#home" className="all">
-            <h2 className="title">Users List</h2>
+            <div className="header">
+                <h2 className="title">Users List</h2>
+                <div className="editButtons">
+                    <button onClick={()=>setShow(true)} className={!show ? "" : "disabled" }>Edit users</button>
+                    <button onClick={()=>setShow(false)} className={show ? "" : "disabled" }>Done</button>
+                </div>
+            </div>
             <div className="userList">
                 {users.map((user)=>{
                     return(
                         <div className="userCard" key={user._id}>
                             <div className="header">
                                 <h3>{user.firstName} {user.lastName}</h3>
-                                <div className="headerButtons">
+                                <div className={show ? "headersButtons" : "disabled" }>
                                     <Link to={`/edit-user/${user._id}`}>
-                                        <BsFillPencilFill />
+                                        <BsFillPencilFill className="icon" />
                                     </Link>
-                                    <GoTrashcan onClick={()=>deleteUser(user._id)}/>
+                                    <GoTrashcan className="icon" onClick={()=>deleteUser(user._id)}/>
                                 </div>
                             </div>
                             <span>{user.email}</span>

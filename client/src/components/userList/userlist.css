@@ -25,7 +25,7 @@
 .headerButtons{
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 1rem;
 }
 
 .headerButtons a {
@@ -34,6 +34,10 @@
 
 .headerButtons svg {
     cursor: pointer;
+}
+
+.icon {
+    margin-left: 10px;
 }
 
 .modalButtons {
@@ -52,4 +56,21 @@
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+}
+
+.editButtons button {
+    background: var(--color-bg-variant);
+	color: white;
+    padding: 3px 10px;
+    border-radius: 5px;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    transform: scale(0.8);
+    margin-left: 0.5rem;
+    margin-top: 0.2rem;
+}
+
+.disabled {
+    display: none;
 }
