@@ -4,6 +4,10 @@
     gap: 1rem;
 }
 
+.disabled {
+    display: none;
+}
+
 .userCard {
     padding: 2rem;
 }
@@ -22,6 +26,11 @@
     gap: 2rem;
 }
 
+.header h2 {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .headerButtons{
     display: flex;
     align-items: center;
@@ -38,6 +47,7 @@
 
 .icon {
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .modalButtons {

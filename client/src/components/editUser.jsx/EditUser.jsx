@@ -16,6 +16,7 @@ export const EditUser = ()=> {
 
     const params = useParams();
     const id = params.id;
+    localStorage.setItem('id', id);
 
     const getUser = async () =>{
         const response = await fetch(`http://localhost:8080/users/${id}`);

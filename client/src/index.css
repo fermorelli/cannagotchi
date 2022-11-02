@@ -28,6 +28,8 @@
 
 html {
     scroll-behavior: smooth;
+    min-height: 100vh;
+    max-height: fit-content;
 }
 
 ::-webkit-scrollbar {

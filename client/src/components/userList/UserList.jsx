@@ -2,22 +2,36 @@ import { useEffect, useState } from "react";
 import './userlist.css';
 import { BsFillPencilFill } from 'react-icons/bs';
 import { GoTrashcan } from 'react-icons/go'
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import swal from 'sweetalert';
 
 export const UserList = ()=> {
 
     const [ users, setUsers ] = useState([]);
     const [ show, setShow ] = useState(false);
+    const [ list, setList ] = useState(false);
+
+    const id = localStorage.getItem('id');
+
+    const ifPrevData = ()=>{
+        console.log(id);
+        console.log(id.length);
+        if(id.length>0){
+            setList(true)
+            setShow(true)
+        }
+    }
 
     const getUsers = async () =>{
         const response = await fetch('http://localhost:8080/users');
         const data = await response.json();
         setUsers(data.data);
+        ifPrevData();
     }
 
     useEffect(()=>{
         getUsers();
+        localStorage.removeItem('id');
     },[])
 
 
@@ -49,13 +63,15 @@ export const UserList = ()=> {
     return (
         <div id="#home" className="all">
             <div className="header">
-                <h2 className="title">Users List</h2>
+                <h2 onClick={()=>{
+                    setList(!list)
+                    }} className="title">{list ? "Hide user list" : "Show user list"}</h2>
                 <div className="editButtons">
-                    <button onClick={()=>setShow(true)} className={!show ? "" : "disabled" }>Edit users</button>
+                    <button onClick={()=>setShow(true)} className={!show && list ? "" : "disabled" }>Edit users</button>
                     <button onClick={()=>setShow(false)} className={show ? "" : "disabled" }>Done</button>
                 </div>
             </div>
-            <div className="userList">
+            <div className={list ? "userList" : "disabled"}>
                 {users.map((user)=>{
                     return(
                         <div className="userCard" key={user._id}>

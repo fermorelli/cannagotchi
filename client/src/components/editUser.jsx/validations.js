@@ -26,11 +26,11 @@ export const schema = Joi.object({
     password: Joi.string()
     .min(8)
     .max(10)
-    .pattern(new RegExp(/^[A-Za-z0-9_-]*$/))
+    .pattern(new RegExp(/^(?=.*?\d)(?=.*?[a-zA-Z])[a-zA-Z\d]+$/))
     .messages({
         'string.min': 'Password must contain at least 8 digits',
         'string.max': `Password can't contain more than 10 digits`,
-        'string.pattern.base': 'Password should contain at least 1 number',
+        'string.pattern.base': 'Password should contain at least 1 number and at least 1 letter',
         'string.empty': 'This field is required'
     })
 })
