@@ -14,8 +14,6 @@ export const UserList = ()=> {
     const id = localStorage.getItem('id');
 
     const ifPrevData = ()=>{
-        console.log(id);
-        console.log(id.length);
         if(id.length>0){
             setList(true)
             setShow(true)
