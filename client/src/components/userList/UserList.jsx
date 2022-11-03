@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import './userlist.css';
 import { BsFillPencilFill } from 'react-icons/bs';
 import { GoTrashcan } from 'react-icons/go'
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import swal from 'sweetalert';
 
 export const UserList = ()=> {
@@ -10,6 +10,7 @@ export const UserList = ()=> {
     const [ users, setUsers ] = useState([]);
     const [ show, setShow ] = useState(false);
     const [ list, setList ] = useState(false);
+    const [ user, setUser ] = useState([]);
 
     const id = localStorage.getItem('id');
 
@@ -34,6 +35,16 @@ export const UserList = ()=> {
 
 
     const deleteUser = (id)=>{
+        
+        const getUser = async ()=>{
+            const response = await fetch(`http://localhost:8080/users/${id}`);
+            const data = await response.json();
+            setUser(data.data);
+            console.log(user);
+        }
+
+        getUser();
+
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this user!",
@@ -51,7 +62,7 @@ export const UserList = ()=> {
                         setUsers(users.filter(item=>item._id !== id))
                     }
             }).catch((e)=>console.log(e))
-            swal("User successfully deleted", {
+            swal(`${user.firstName} ${user.lastName} was successfully deleted`, {
                 icon: "success",
             });
             }
@@ -63,6 +74,7 @@ export const UserList = ()=> {
             <div className="header">
                 <h2 onClick={()=>{
                     setList(!list)
+                    setShow(false);
                     }} className="title">{list ? "Hide user list" : "Show user list"}</h2>
                 <div className="editButtons">
                     <button onClick={()=>setShow(true)} className={!show && list ? "" : "disabled" }>Edit users</button>

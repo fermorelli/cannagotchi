@@ -10,7 +10,7 @@ function App() {
         <Router basename={process.env.PUBLIC_URL}>
         <Nav />
           <Routes>
-            <Route path='/' element={<UserList />} exact></Route>
+            <Route path='/users' element={<UserList />} exact></Route>
             <Route path='/add-user' element={<AddUser />} exact></Route>
             <Route path='/edit-user/:id' element={<EditUser />} exact></Route>
           </Routes>

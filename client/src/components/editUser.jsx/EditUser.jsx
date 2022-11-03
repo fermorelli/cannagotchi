@@ -91,7 +91,7 @@ export const EditUser = ()=> {
                     <input type="password" placeholder={data.password} value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
                     <div className='formButtons'>
                         <button type="submit" onClick={editUser}>Update</button>
-                        <Link to={'/'}>
+                        <Link to={'/users'}>
                             <button>Go back</button>
                         </Link>
                     </div>

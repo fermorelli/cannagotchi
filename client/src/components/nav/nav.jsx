@@ -5,8 +5,8 @@ export const Nav = ()=>{
     return (
         <nav>
             <div className="links">
-                <span>Crud MERN Stack</span>
-                <Link to={'/'}>Home</Link>
+                <Link to={'/'}><span>Crud MERN Stack</span></Link>
+                <Link to={'/users'}>Users</Link>
                 <Link to={'/add-user'}>Add User</Link>
             </div>
         </nav>
