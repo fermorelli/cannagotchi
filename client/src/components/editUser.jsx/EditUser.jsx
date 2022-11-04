@@ -51,7 +51,6 @@ export const EditUser = ()=> {
 
             .then((response) => response.json())
             .then((data) => {
-                console.log(data)
                 if(data.error===false){
                     isSuccess(true)
                     setIsOpen(true)
@@ -63,15 +62,13 @@ export const EditUser = ()=> {
             });
     }
 
-    console.log(data.firstName);
-
     return (
         <div className="all">
             {isOpen &&
             <Modal setIsOpen={setIsOpen} modalTitle={success===true? "Success" : "Something went wrong"}>
                 <p>{success ? "User successfully updated" : null}</p>
                 <div className='addModalButtons'>
-                    <Link to={'/'}>
+                    <Link to={'/users'}>
                         <button onClick={handleClose}>Go back</button>
                     </Link>
                 </div>

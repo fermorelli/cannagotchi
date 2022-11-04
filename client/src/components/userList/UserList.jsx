@@ -3,14 +3,18 @@ import './userlist.css';
 import { BsFillPencilFill } from 'react-icons/bs';
 import { GoTrashcan } from 'react-icons/go'
 import { Link } from "react-router-dom";
-import swal from 'sweetalert';
+import Modal from "../modal/modal";
 
 export const UserList = ()=> {
 
     const [ users, setUsers ] = useState([]);
     const [ show, setShow ] = useState(false);
     const [ list, setList ] = useState(false);
-    const [ user, setUser ] = useState([]);
+    const [ isOpen, setIsOpen ] = useState(false);
+    const [ confirm, setConfirm ] = useState(false);
+    const [ ID, setID ] = useState('');
+    const [ name, setName ] = useState('');
+    const [ lastname, setLastName ] = useState('');
 
     const id = localStorage.getItem('id');
 
@@ -33,28 +37,20 @@ export const UserList = ()=> {
         localStorage.removeItem('id');
     },[])
 
+    const handleChange = (id, firstName, lastName)=>{
+        setIsOpen(true);
+        setID(id);
+        setName(firstName);
+        setLastName(lastName);
+    }
 
-    const deleteUser = (id)=>{
-        
-        const getUser = async ()=>{
-            const response = await fetch(`http://localhost:8080/users/${id}`);
-            const data = await response.json();
-            setUser(data.data);
-            console.log(user);
-        }
+    const handleClose = ()=>{
+        setIsOpen(false);
+        setConfirm(false)
+    }
 
-        getUser();
-
-        swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this user!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-                fetch(`http://localhost:8080/${id}`, {method: 'DELETE'})
+    const deleteUser = (id, firstName, lastName)=>{
+        fetch(`http://localhost:8080/${id}`, {method: 'DELETE'})
                 .then((response)=> {
                     if(!response.ok){
                         throw new Error('Something went wrong')
@@ -62,15 +58,21 @@ export const UserList = ()=> {
                         setUsers(users.filter(item=>item._id !== id))
                     }
             }).catch((e)=>console.log(e))
-            swal(`${user.firstName} ${user.lastName} was successfully deleted`, {
-                icon: "success",
-            });
-            }
-          });
+            setConfirm(true);
     }
 
     return (
         <div id="#home" className="all">
+            {isOpen &&
+            <Modal setIsOpen={setIsOpen} modalTitle={!confirm ? "Are you sure you want to delete this user?" : "User successfully deleted"}>
+                {confirm ? <p>{name} {lastname} was deleted</p> : <p>This action cannot be undone</p> }
+                <div className='addModalButtons'>
+                    <button onClick={()=>deleteUser(ID, name, lastname)} className={confirm? "disabled" : null}>Delete</button>
+                    <Link to={'/users'}>
+                        <span onClick={handleClose}>{!confirm? 'Cancel' : 'Go back'}</span>
+                    </Link>
+                </div>
+            </Modal>}
             <div className="header">
                 <h2 onClick={()=>{
                     setList(!list)
@@ -91,7 +93,8 @@ export const UserList = ()=> {
                                     <Link to={`/edit-user/${user._id}`}>
                                         <BsFillPencilFill className="icon" />
                                     </Link>
-                                    <GoTrashcan className="icon" onClick={()=>deleteUser(user._id)}/>
+                                    <GoTrashcan className="icon" onClick={()=>{
+                                        handleChange(user._id, user.firstName, user.lastName)}}/>
                                 </div>
                             </div>
                             <span>{user.email}</span>
