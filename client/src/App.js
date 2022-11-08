@@ -5,20 +5,25 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Nav } from './components/nav/nav';
 import { LogIn } from './components/login/LogIn';
 import { SignUp } from './components/signup/SignUp';
+import { AuthProvider } from './context/authContext';
+import { Home } from './components/home/Home';
 
 function App() {
   return (
     <div className="App">
+      <AuthProvider>
         <Router basename={process.env.PUBLIC_URL}>
-        <Nav />
-          <Routes>
-            <Route path='/login' element={<LogIn />} exact></Route>
-            <Route path='/signup' element={<SignUp />} exact></Route>
-            <Route path='/users' element={<UserList />} exact></Route>
-            <Route path='/add-user' element={<AddUser />} exact></Route>
-            <Route path='/edit-user/:id' element={<EditUser />} exact></Route>
-          </Routes>
-        </Router>
+          <Nav />
+            <Routes>
+              <Route path='/' element={<Home />} exact></Route>
+              <Route path='/login' element={<LogIn />} exact></Route>
+              <Route path='/signup' element={<SignUp />} exact></Route>
+              <Route path='/users' element={<UserList />} exact></Route>
+              <Route path='/add-user' element={<AddUser />} exact></Route>
+              <Route path='/edit-user/:id' element={<EditUser />} exact></Route>
+            </Routes>
+          </Router>
+      </AuthProvider>
     </div>
   );
 }
