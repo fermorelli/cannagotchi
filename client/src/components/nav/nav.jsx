@@ -6,6 +6,8 @@ export const Nav = ()=>{
         <nav>
             <div className="links">
                 <Link to={'/'}><span>Crud MERN Stack</span></Link>
+                <Link to={'/login'}>Log in</Link>
+                <Link to={'/signup'}>Sign up</Link>
                 <Link to={'/users'}>Users</Link>
                 <Link to={'/add-user'}>Add User</Link>
             </div>
