@@ -18,6 +18,7 @@ export const LogIn = ()=>{
         try {
             await login(email,password);
             navigate('/users')
+            console.log('successful login')
         } catch (err) {
             console.log(err);
         }

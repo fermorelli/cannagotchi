@@ -4,6 +4,8 @@ import { BsFillPencilFill } from 'react-icons/bs';
 import { GoTrashcan } from 'react-icons/go'
 import { Link } from "react-router-dom";
 import Modal from "../modal/modal";
+import { useAuth } from "../../context/authContext";
+import { useNavigate } from 'react-router-dom';
 
 export const UserList = ()=> {
 
@@ -15,6 +17,16 @@ export const UserList = ()=> {
     const [ ID, setID ] = useState('');
     const [ name, setName ] = useState('');
     const [ lastname, setLastName ] = useState('');
+    const [ loggedUser, setLoggedUser ] = useState({});
+
+    const navigate = useNavigate();
+
+    const { user, logout } = useAuth();
+
+    const handleLogOut = async () => {
+        await logout();
+        navigate('/')
+    }
 
     const id = localStorage.getItem('id');
 
@@ -32,9 +44,21 @@ export const UserList = ()=> {
         ifPrevData();
     }
 
+    // const pairUsers = ()=> {
+    //     users.map((user)=>{
+    //         if(user.email.match(loggedUser.email)){
+    //             setLoggedUserName(user.name)
+    //         } return(
+    //             console.log('name: ', loggedUserName)
+    //         )
+    //     })
+    // }
+
     useEffect(()=>{
         getUsers();
         localStorage.removeItem('id');
+        user ? setLoggedUser(user) : setLoggedUser('');
+        console.log('Logged user: ', loggedUser)
     },[])
 
     const handleChange = (id, firstName, lastName)=>{
@@ -73,6 +97,7 @@ export const UserList = ()=> {
                     </Link>
                 </div>
             </Modal>}
+            {user && <span>Welcome {loggedUser.email}</span>}
             <div className="header">
                 <h2 onClick={()=>{
                     setList(!list)
@@ -83,6 +108,7 @@ export const UserList = ()=> {
                     <button onClick={()=>setShow(false)} className={show ? "" : "disabled" }>Done</button>
                 </div>
             </div>
+            <button onClick={handleLogOut}>Log out</button>
             <div className={list ? "userList" : "disabled"}>
                 {users.map((user)=>{
                     return(
