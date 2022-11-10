@@ -5,6 +5,7 @@ import '../adduser/adduser.css'
 import { appendErrors, useForm } from 'react-hook-form';
 import { schema } from '../adduser/validations';
 import { joiResolver } from '@hookform/resolvers/joi';
+import { useAuth } from '../../context/authContext';
 
 
 
@@ -17,8 +18,11 @@ export const SignUp = ()=> {
     const [ isOpen, setIsOpen ] = useState(false);
     const [ success, isSuccess ] = useState(false);
 
+    const { regNew } = useAuth();
+
     const signUp = (e)=>{
         e.preventDefault();
+        regNew(email,password);
 
         fetch('http://localhost:8080', {
             method: 'POST',
