@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../firebase/firebase';
 
-export const authContext = createContext();
+const authContext = createContext();
 
 export const useAuth = () =>{
     const context = useContext(authContext);
@@ -16,6 +16,8 @@ export const AuthProvider = ({children})=>{
     useEffect(()=>{
         onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
+            console.log('user: ', currentUser);
+            localStorage.setItem('user', JSON.stringify(currentUser));
         });
     },[user])
 
@@ -29,6 +31,7 @@ export const AuthProvider = ({children})=>{
 
     const logout = ()=> {
         signOut(auth);
+        localStorage.clear();
     }
 
     return(

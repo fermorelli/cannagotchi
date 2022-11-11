@@ -22,6 +22,7 @@ export const UserList = ()=> {
     const navigate = useNavigate();
 
     const { user, logout } = useAuth();
+    const localUser = JSON.parse(localStorage.getItem('user'));
 
     const handleLogOut = async () => {
         await logout();
@@ -41,6 +42,7 @@ export const UserList = ()=> {
         const response = await fetch('http://localhost:8080/users');
         const data = await response.json();
         setUsers(data.data);
+        user ? setLoggedUser(user) : setLoggedUser(localUser);
         ifPrevData();
     }
 
@@ -57,9 +59,7 @@ export const UserList = ()=> {
     useEffect(()=>{
         getUsers();
         localStorage.removeItem('id');
-        user ? setLoggedUser(user) : setLoggedUser('');
-        console.log('Logged user: ', loggedUser)
-    },[])
+    },[user])
 
     const handleChange = (id, firstName, lastName)=>{
         setIsOpen(true);
@@ -97,7 +97,7 @@ export const UserList = ()=> {
                     </Link>
                 </div>
             </Modal>}
-            {user && <span>Welcome {loggedUser.email}</span>}
+            {user ? <span>Welcome {loggedUser?.email}</span> : <span>Welcome {localUser?.email}</span>}
             <div className="header">
                 <h2 onClick={()=>{
                     setList(!list)
