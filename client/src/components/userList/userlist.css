@@ -58,7 +58,7 @@
     gap: 0.5rem;
 }
 
-.modalButtons button{
+.modalButtons button, #logout{
     background: var(--color-bg-variant);
 	color: white;
     padding: 3px 10px;

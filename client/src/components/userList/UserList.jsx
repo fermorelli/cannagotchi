@@ -17,12 +17,10 @@ export const UserList = ()=> {
     const [ ID, setID ] = useState('');
     const [ name, setName ] = useState('');
     const [ lastname, setLastName ] = useState('');
-    const [ loggedUser, setLoggedUser ] = useState({});
 
     const navigate = useNavigate();
 
-    const { user, logout } = useAuth();
-    const localUser = JSON.parse(localStorage.getItem('user'));
+    const { user, logout } = useAuth(); 
 
     const handleLogOut = async () => {
         await logout();
@@ -42,19 +40,8 @@ export const UserList = ()=> {
         const response = await fetch('http://localhost:8080/users');
         const data = await response.json();
         setUsers(data.data);
-        user ? setLoggedUser(user) : setLoggedUser(localUser);
         ifPrevData();
     }
-
-    // const pairUsers = ()=> {
-    //     users.map((user)=>{
-    //         if(user.email.match(loggedUser.email)){
-    //             setLoggedUserName(user.name)
-    //         } return(
-    //             console.log('name: ', loggedUserName)
-    //         )
-    //     })
-    // }
 
     useEffect(()=>{
         getUsers();
@@ -97,7 +84,7 @@ export const UserList = ()=> {
                     </Link>
                 </div>
             </Modal>}
-            {user ? <span>Welcome {loggedUser?.email}</span> : <span>Welcome {localUser?.email}</span>}
+            {user && <span>Welcome {user.email}</span>}
             <div className="header">
                 <h2 onClick={()=>{
                     setList(!list)
@@ -108,7 +95,6 @@ export const UserList = ()=> {
                     <button onClick={()=>setShow(false)} className={show ? "" : "disabled" }>Done</button>
                 </div>
             </div>
-            <button onClick={handleLogOut}>Log out</button>
             <div className={list ? "userList" : "disabled"}>
                 {users.map((user)=>{
                     return(
@@ -128,6 +114,7 @@ export const UserList = ()=> {
                     )})
                 }
             </div>
+            <button onClick={handleLogOut} id='logout'>Log out</button>
         </div>
     )
 }
