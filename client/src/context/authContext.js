@@ -12,6 +12,7 @@ export const useAuth = () =>{
 export const AuthProvider = ({children})=>{
 
     const [ user, setUser ] = useState(null);
+    const [ suError, setSuError ] = useState('')
 
     useEffect(()=>{
         onAuthStateChanged(auth, currentUser => {
@@ -21,8 +22,14 @@ export const AuthProvider = ({children})=>{
         });
     },[user])
 
-    const regNew = (email, password) => {
-        createUserWithEmailAndPassword(auth, email, password);
+    const regNew = async (email, password) => {
+        setSuError('')
+        try{
+            await createUserWithEmailAndPassword(auth, email, password);
+        }
+        catch(err){
+            await setSuError(err.message);
+        }
     }
 
     const login = (email,password) => {
@@ -35,7 +42,7 @@ export const AuthProvider = ({children})=>{
     }
 
     return(
-        <authContext.Provider value={{regNew, login, logout, user}}>
+        <authContext.Provider value={{regNew, login, logout, user, suError}}>
             {children}
         </authContext.Provider>
     )

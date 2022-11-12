@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Modal from '../modal/modal';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import '../adduser/adduser.css'
 import { appendErrors, set, useForm } from 'react-hook-form';
 import { schema } from '../adduser/validations';
@@ -17,35 +17,49 @@ export const SignUp = ()=> {
     const [ password, setPassword ] = useState('');
     const [ isOpen, setIsOpen ] = useState(false);
     const [ success, isSuccess ] = useState(false);
-    const [ error, setError ] = useState(false);
+    const [ error, setError ] = useState();
 
-    const { regNew } = useAuth();
+    const { regNew, suError } = useAuth();
+    const navigate = useNavigate()
 
-    const signUp = (e)=>{
+
+    const signUp = async (e)=>{
         e.preventDefault();
-        regNew(email,password);
-       fetch('http://localhost:8080', {
-        method: 'POST',
-        headers: {'Content-type': 'application/json'},
-        body: JSON.stringify({
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password
-        })})
+        try {
+            await regNew(email,password)
+            console.log(suError)
+            // if(suError.length===0){
+            //     fetch('http://localhost:8080', {
+            //     method: 'POST',
+            //     headers: {'Content-type': 'application/json'},
+            //     body: JSON.stringify({
+            //         firstName: firstName,
+            //         lastName: lastName,
+            //         email: email,
+            //         password: password
+            //     })})
 
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data)
-            if(data.error===false){
-                isSuccess(true)
-                setIsOpen(true)
-            }
-        })
-        .catch((err) => {
-            console.log(err.message);
-            isSuccess(false);
-        });
+            //     .then((response) => response.json())
+            //     .then((data) => {
+            //         console.log(data)
+            //         if(data.error===false){
+            //             isSuccess(true)
+            //             setIsOpen(true)
+            //         }
+            //     })
+            //     .catch((err) => {
+            //         console.log(err.message);
+            //         isSuccess(false);
+            //     });
+            //     navigate('/')
+            // } else{
+            //     console.log('error: ', suError)
+            // }
+        }
+        catch(err){
+            await console.log(err);
+        }
+
     }
 
     const handleClose = ()=>{
@@ -75,7 +89,7 @@ export const SignUp = ()=> {
             <div className="title">
                 <h2>Sign up</h2>
             </div>
-            {error && <p className='error'>An error ocurred while creating the user</p>}
+            {/* {error && <p className='error'>An error ocurred while creating the user</p>} */}
             <div className="form">
                 <form action="" onSubmit={handleSubmit(signUp)}>
                     <label htmlFor="">First Name</label>
