@@ -20,10 +20,9 @@ export const AuthProvider = ({children})=>{
             console.log('user: ', currentUser);
             localStorage.setItem('user', JSON.stringify(currentUser));
         });
-    },[user])
+    },[user, suError])
 
     const regNew = async (email, password) => {
-        setSuError('')
         try{
             await createUserWithEmailAndPassword(auth, email, password);
         }

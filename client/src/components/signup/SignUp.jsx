@@ -6,6 +6,7 @@ import { appendErrors, set, useForm } from 'react-hook-form';
 import { schema } from '../adduser/validations';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useAuth } from '../../context/authContext';
+import { useEffect } from 'react';
 
 
 
@@ -17,18 +18,16 @@ export const SignUp = ()=> {
     const [ password, setPassword ] = useState('');
     const [ isOpen, setIsOpen ] = useState(false);
     const [ success, isSuccess ] = useState(false);
-    const [ error, setError ] = useState();
+    // const [ error, setError ] = useState(false);
 
     const { regNew, suError } = useAuth();
+
     const navigate = useNavigate()
 
-
     const signUp = async (e)=>{
-        e.preventDefault();
         try {
             await regNew(email,password)
-            console.log(suError)
-            // if(suError.length===0){
+            // if(suError){
             //     fetch('http://localhost:8080', {
             //     method: 'POST',
             //     headers: {'Content-type': 'application/json'},
@@ -59,7 +58,6 @@ export const SignUp = ()=> {
         catch(err){
             await console.log(err);
         }
-
     }
 
     const handleClose = ()=>{
@@ -89,7 +87,7 @@ export const SignUp = ()=> {
             <div className="title">
                 <h2>Sign up</h2>
             </div>
-            {/* {error && <p className='error'>An error ocurred while creating the user</p>} */}
+            {error && <p className='error'>An error ocurred while creating the user</p>}
             <div className="form">
                 <form action="" onSubmit={handleSubmit(signUp)}>
                     <label htmlFor="">First Name</label>
