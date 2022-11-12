@@ -87,7 +87,7 @@ export const SignUp = ()=> {
             <div className="title">
                 <h2>Sign up</h2>
             </div>
-            {error && <p className='error'>An error ocurred while creating the user</p>}
+            {/* {error && <p className='error'>An error ocurred while creating the user</p>} */}
             <div className="form">
                 <form action="" onSubmit={handleSubmit(signUp)}>
                     <label htmlFor="">First Name</label>
