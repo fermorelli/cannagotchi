@@ -23,8 +23,7 @@ export const SignUp = ()=> {
 
     const signUp = (e)=>{
         e.preventDefault();
-       const userNew = regNew(email,password);
-       !userNew ? setError(true) :
+        regNew(email,password);
        fetch('http://localhost:8080', {
         method: 'POST',
         headers: {'Content-type': 'application/json'},

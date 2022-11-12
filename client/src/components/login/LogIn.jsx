@@ -10,16 +10,13 @@ export const LogIn = ()=>{
 
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
-    const [ error, setError ] = useState(false);
     const navigate = useNavigate();
     const { login } = useAuth();
 
     const logIn = (e)=>{
         e.preventDefault();
-        const logged = login(email,password);
-        logged &&
+        login(email,password);
         navigate('/users')
-        !logged && setError(true);
     }
 
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -30,7 +27,6 @@ export const LogIn = ()=>{
     return(
         <div className="all">
             <h1>Log In</h1>
-            {error && <p className='error'>Invalid mail or password</p>}
             <form action="" onSubmit={handleSubmit(logIn)} className='form'>
                 <label htmlFor="">Email</label>
                 <input type="mail" {...register('email')} name="email" error={appendErrors.email?.message} value={email} onChange={(e)=>{setEmail(e.target.value)}} />
