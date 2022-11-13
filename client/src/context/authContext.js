@@ -20,7 +20,7 @@ export const AuthProvider = ({children})=>{
             console.log('user: ', currentUser);
             localStorage.setItem('user', JSON.stringify(currentUser));
         });
-    },[user, suError])
+    },[user])
 
     const regNew = async (email, password) => {
         try{

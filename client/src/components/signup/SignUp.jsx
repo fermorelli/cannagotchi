@@ -18,6 +18,7 @@ export const SignUp = ()=> {
     const [ password, setPassword ] = useState('');
     const [ isOpen, setIsOpen ] = useState(false);
     const [ success, isSuccess ] = useState(false);
+    const [ fetching, isFetching ] = useState(false);
     // const [ error, setError ] = useState(false);
 
     const { regNew, suError } = useAuth();
@@ -25,8 +26,15 @@ export const SignUp = ()=> {
     const navigate = useNavigate()
 
     const signUp = async (e)=>{
+        isFetching(true);
         try {
             await regNew(email,password)
+            await console.log(suError)
+        }
+        catch(e) {
+            await console.log('error: ', e)
+        }
+        
             // if(suError){
             //     fetch('http://localhost:8080', {
             //     method: 'POST',
@@ -54,10 +62,7 @@ export const SignUp = ()=> {
             // } else{
             //     console.log('error: ', suError)
             // }
-        }
-        catch(err){
-            await console.log(err);
-        }
+        isFetching(false);
     }
 
     const handleClose = ()=>{
@@ -75,6 +80,7 @@ export const SignUp = ()=> {
 
     return (
         <div className="all">
+            {fetching && <p>...loading</p>}
             {isOpen &&
             <Modal setIsOpen={setIsOpen} modalTitle={success===true? "Success" : "Something went wrong"}>
                 <p>{success ? "New account created" : null}</p>
