@@ -5,13 +5,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Nav } from './components/nav/nav';
 import { LogIn } from './components/login/LogIn';
 import { SignUp } from './components/signup/SignUp';
-import { AuthProvider } from './context/authContext';
+import { AuthState } from './context/auth/AuthState';
 import { Home } from './components/home/Home';
 
 function App() {
   return (
     <div className="App">
-      <AuthProvider>
+      <AuthState>
         <Router basename={process.env.PUBLIC_URL}>
           <Nav />
             <Routes>
@@ -23,7 +23,7 @@ function App() {
               <Route path='/edit-user/:id' element={<EditUser />} exact></Route>
             </Routes>
           </Router>
-      </AuthProvider>
+      </AuthState>
     </div>
   );
 }

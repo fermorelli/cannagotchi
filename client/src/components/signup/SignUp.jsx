@@ -5,8 +5,7 @@ import '../adduser/adduser.css'
 import { appendErrors, set, useForm } from 'react-hook-form';
 import { schema } from '../adduser/validations';
 import { joiResolver } from '@hookform/resolvers/joi';
-import { useAuth } from '../../context/authContext';
-import { useEffect } from 'react';
+import { signUp, logIn } from '../../context/auth/AuthThunks';
 
 
 
@@ -19,50 +18,42 @@ export const SignUp = ()=> {
     const [ isOpen, setIsOpen ] = useState(false);
     const [ success, isSuccess ] = useState(false);
     const [ fetching, isFetching ] = useState(false);
+
+
     // const [ error, setError ] = useState(false);
 
-    const { regNew, suError } = useAuth();
+    // const { regNew, suError } = useAuth();
 
     const navigate = useNavigate()
 
-    const signUp = async (e)=>{
+    const signUp = (e)=>{
+        e.preventdefault();
         isFetching(true);
-        try {
-            await regNew(email,password)
-            await console.log(suError)
-        }
-        catch(e) {
-            await console.log('error: ', e)
-        }
-        
-            // if(suError){
-            //     fetch('http://localhost:8080', {
-            //     method: 'POST',
-            //     headers: {'Content-type': 'application/json'},
-            //     body: JSON.stringify({
-            //         firstName: firstName,
-            //         lastName: lastName,
-            //         email: email,
-            //         password: password
-            //     })})
+        signUp(email,password);
+        fetch('http://localhost:8080', {
+                method: 'POST',
+                headers: {'Content-type': 'application/json'},
+                body: JSON.stringify({
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    password: password
+                })})
 
-            //     .then((response) => response.json())
-            //     .then((data) => {
-            //         console.log(data)
-            //         if(data.error===false){
-            //             isSuccess(true)
-            //             setIsOpen(true)
-            //         }
-            //     })
-            //     .catch((err) => {
-            //         console.log(err.message);
-            //         isSuccess(false);
-            //     });
-            //     navigate('/')
-            // } else{
-            //     console.log('error: ', suError)
-            // }
-        isFetching(false);
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data)
+                    if(data.error===false){
+                        isSuccess(true)
+                        setIsOpen(true)
+                    }
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                    isSuccess(false);
+                });
+                navigate('/')
+                isFetching(false);
     }
 
     const handleClose = ()=>{

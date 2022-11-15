@@ -1,48 +1,40 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
-import { auth } from '../firebase/firebase';
+// import { createContext, useContext, useEffect, useState } from 'react';
+// import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
+// import { auth } from '../firebase/firebase';
 
-const authContext = createContext();
+// const authContext = createContext();
 
-export const useAuth = () =>{
-    const context = useContext(authContext);
-    return context;
-}
+// export const useAuth = () =>{
+//     const context = useContext(authContext);
+//     return context;
+// }
 
-export const AuthProvider = ({children})=>{
+// export const AuthProvider = ({children})=>{
 
-    const [ user, setUser ] = useState(null);
-    const [ suError, setSuError ] = useState('')
+//     const [ user, setUser ] = useState(null);
+//     const [ suError, setSuError ] = useState('')
 
-    useEffect(()=>{
-        onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser);
-            console.log('user: ', currentUser);
-            localStorage.setItem('user', JSON.stringify(currentUser));
-        });
-    },[user])
+//     const regNew = async (email, password) => {
+//         try{
+//             await createUserWithEmailAndPassword(auth, email, password);
+//         }
+//         catch(err){
+//             await setSuError(err.message);
+//         }
+//     }
 
-    const regNew = async (email, password) => {
-        try{
-            await createUserWithEmailAndPassword(auth, email, password);
-        }
-        catch(err){
-            await setSuError(err.message);
-        }
-    }
+//     const login = (email,password) => {
+//         signInWithEmailAndPassword(auth, email, password);
+//     }
 
-    const login = (email,password) => {
-        signInWithEmailAndPassword(auth, email, password);
-    }
+//     const logout = ()=> {
+//         signOut(auth);
+//         localStorage.clear();
+//     }
 
-    const logout = ()=> {
-        signOut(auth);
-        localStorage.clear();
-    }
-
-    return(
-        <authContext.Provider value={{regNew, login, logout, user, suError}}>
-            {children}
-        </authContext.Provider>
-    )
-};
+//     return(
+//         <authContext.Provider value={{regNew, login, logout, user, suError}}>
+//             {children}
+//         </authContext.Provider>
+//     )
+// };
