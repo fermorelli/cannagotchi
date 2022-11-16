@@ -8,7 +8,6 @@ import { joiResolver } from '@hookform/resolvers/joi';
 import { useAuth } from '../../context/authContext';
 
 
-
 export const SignUp = ()=> {
 
     const [ firstName, setFirstName ] = useState('');
@@ -20,9 +19,9 @@ export const SignUp = ()=> {
 
     const { regNew } = useAuth();
 
-    const signUp = (e)=>{
-        e.preventDefault();
-        regNew(email,password);
+    const addUser = ()=>{
+        const auth = localStorage.getItem('auth');
+        auth === 'auth' ? console.log('si') : console.log('no')
 
         // fetch('http://localhost:8080', {
         //     method: 'POST',
@@ -33,7 +32,6 @@ export const SignUp = ()=> {
         //         email: email,
         //         password: password
         //     })})
-
         //     .then((response) => response.json())
         //     .then((data) => {
         //         console.log(data)
@@ -45,7 +43,15 @@ export const SignUp = ()=> {
         //     .catch((err) => {
         //         console.log(err.message);
         //         isSuccess(false);
-        //     });
+        //     })
+    }
+
+    const signUp = (e)=>{
+        e.preventDefault();
+        regNew(email,password)
+            .then(()=>{
+                addUser();
+            })
         }
 
     const handleClose = ()=>{

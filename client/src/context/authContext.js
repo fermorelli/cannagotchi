@@ -12,7 +12,6 @@ export const useAuth = () =>{
 export const AuthProvider = ({children})=>{
 
     const [ user, setUser ] = useState(null);
-    const [ suError, setSuError ] = useState('')
 
     useEffect(()=>{
         onAuthStateChanged(auth, currentUser => {
@@ -26,11 +25,11 @@ export const AuthProvider = ({children})=>{
         try{
             await createUserWithEmailAndPassword(auth, email, password);
             console.log('entro')
+            localStorage.setItem('auth', 'auth')
         }
         catch(err){
-            const error = err.message;
-            setSuError(error);
-            console.log('no entro: ', error)
+            console.log('no entro')
+            localStorage.setItem('authed', 'notauth')
         }
     }
 
@@ -44,7 +43,7 @@ export const AuthProvider = ({children})=>{
     }
 
     return(
-        <authContext.Provider value={{regNew, login, logout, user, suError}}>
+        <authContext.Provider value={{regNew, login, logout, user}}>
             {children}
         </authContext.Provider>
     )
