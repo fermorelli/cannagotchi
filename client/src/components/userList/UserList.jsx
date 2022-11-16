@@ -4,7 +4,7 @@ import { BsFillPencilFill } from 'react-icons/bs';
 import { GoTrashcan } from 'react-icons/go'
 import { Link } from "react-router-dom";
 import Modal from "../modal/modal";
-import { logout } from "../../context/auth/AuthThunks";
+import { useAuth } from "../../context/authContext";
 import { useNavigate } from 'react-router-dom';
 
 export const UserList = ()=> {
@@ -19,6 +19,8 @@ export const UserList = ()=> {
     const [ lastname, setLastName ] = useState('');
 
     const navigate = useNavigate();
+
+    const { user, logout } = useAuth(); 
 
     const handleLogOut = async () => {
         await logout();
@@ -44,7 +46,7 @@ export const UserList = ()=> {
     useEffect(()=>{
         getUsers();
         localStorage.removeItem('id');
-    },[])
+    },[user])
 
     const handleChange = (id, firstName, lastName)=>{
         setIsOpen(true);
@@ -82,7 +84,7 @@ export const UserList = ()=> {
                     </Link>
                 </div>
             </Modal>}
-            {/* {user && <span>Welcome {user.email}</span>} */}
+            {user && <span>Welcome {user.email}</span>}
             <div className="header">
                 <h2 onClick={()=>{
                     setList(!list)
