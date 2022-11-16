@@ -16,7 +16,6 @@ export const SignUp = ()=> {
     const [ password, setPassword ] = useState('');
     const [ isOpen, setIsOpen ] = useState(false);
     const [ success, isSuccess ] = useState(false);
-    const [ error, setError ] = useState('');
     const [ fetching, isFetching ] =useState(false);
     const [ errmsg, setErrmsg ] = useState('');
 
@@ -24,7 +23,7 @@ export const SignUp = ()=> {
 
     const addUser = ()=>{
 
-        const auth = JSON.parse(window.localStorage.getItem('auth'));;
+        const auth = localStorage.getItem('auth');
         auth === 'auth' ?
         fetch('http://localhost:8080', {
             method: 'POST',
@@ -48,7 +47,6 @@ export const SignUp = ()=> {
                 isSuccess(false);
             })
             :
-            setError(auth);
             console.log(auth)
             switch(auth){
                 case 'Firebase: Error (auth/email-already-in-use).':
@@ -98,7 +96,7 @@ export const SignUp = ()=> {
                 <h2>Sign up</h2>
             </div>
             <div className="form">
-                {error && <span>{errmsg}-</span>}
+                {errmsg && <span>{errmsg}-</span>}
                 <form action="" onSubmit={handleSubmit(signUp)}>
                     <label htmlFor="">First Name</label>
                     <input type="text" {...register('firstName')} name="firstName" error={appendErrors.firstName?.message} value={firstName} onChange={(e)=>{setFirstName(e.target.value)}}/>
