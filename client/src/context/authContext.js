@@ -24,12 +24,11 @@ export const AuthProvider = ({children})=>{
     const regNew = async (email, password) => {
         try{
             await createUserWithEmailAndPassword(auth, email, password);
-            console.log('entro')
             localStorage.setItem('auth', 'auth')
         }
         catch(err){
-            console.log('no entro')
-            localStorage.setItem('authed', 'notauth')
+            const error = err.message;
+            localStorage.setItem('auth', JSON.stringify(error))
         }
     }
 

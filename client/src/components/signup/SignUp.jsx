@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Modal from '../modal/modal';
 import { Link } from 'react-router-dom';
 import '../adduser/adduser.css'
-import { appendErrors, useForm } from 'react-hook-form';
+import { appendErrors, set, useForm } from 'react-hook-form';
 import { schema } from '../adduser/validations';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useAuth } from '../../context/authContext';
@@ -16,41 +16,56 @@ export const SignUp = ()=> {
     const [ password, setPassword ] = useState('');
     const [ isOpen, setIsOpen ] = useState(false);
     const [ success, isSuccess ] = useState(false);
+    const [ error, setError ] = useState('');
+    const [ fetching, isFetching ] =useState(false);
+    const [ errmsg, setErrmsg ] = useState('');
 
     const { regNew } = useAuth();
 
     const addUser = ()=>{
-        const auth = localStorage.getItem('auth');
-        auth === 'auth' ? console.log('si') : console.log('no')
 
-        // fetch('http://localhost:8080', {
-        //     method: 'POST',
-        //     headers: {'Content-type': 'application/json'},
-        //     body: JSON.stringify({
-        //         firstName: firstName,
-        //         lastName: lastName,
-        //         email: email,
-        //         password: password
-        //     })})
-        //     .then((response) => response.json())
-        //     .then((data) => {
-        //         console.log(data)
-        //         if(data.error===false){
-        //             isSuccess(true)
-        //             setIsOpen(true)
-        //         }
-        //     })
-        //     .catch((err) => {
-        //         console.log(err.message);
-        //         isSuccess(false);
-        //     })
+        const auth = JSON.parse(window.localStorage.getItem('auth'));;
+        auth === 'auth' ?
+        fetch('http://localhost:8080', {
+            method: 'POST',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password
+            })})
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+                if(data.error===false){
+                    isSuccess(true)
+                    setIsOpen(true)
+                }
+            })
+            .catch((err) => {
+                console.log(err.message);
+                isSuccess(false);
+            })
+            :
+            setError(auth);
+            console.log(auth)
+            switch(auth){
+                case 'Firebase: Error (auth/email-already-in-use).':
+                    setErrmsg('Mail already in use');
+                    break;
+                default:
+                    console.log('no coincide');
+            }
     }
 
     const signUp = (e)=>{
         e.preventDefault();
+        isFetching(true);
         regNew(email,password)
             .then(()=>{
                 addUser();
+                isFetching(false);
             })
         }
 
@@ -69,6 +84,7 @@ export const SignUp = ()=> {
 
     return (
         <div className="all">
+            {fetching && <p>...loading</p>}
             {isOpen &&
             <Modal setIsOpen={setIsOpen} modalTitle={success===true? "Success" : "Something went wrong"}>
                 <p>{success ? "New account created" : null}</p>
@@ -82,6 +98,7 @@ export const SignUp = ()=> {
                 <h2>Sign up</h2>
             </div>
             <div className="form">
+                {error && <span>{errmsg}-</span>}
                 <form action="" onSubmit={handleSubmit(signUp)}>
                     <label htmlFor="">First Name</label>
                     <input type="text" {...register('firstName')} name="firstName" error={appendErrors.firstName?.message} value={firstName} onChange={(e)=>{setFirstName(e.target.value)}}/>
