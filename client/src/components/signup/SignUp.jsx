@@ -24,28 +24,28 @@ export const SignUp = ()=> {
         e.preventDefault();
         regNew(email,password);
 
-        fetch('http://localhost:8080', {
-            method: 'POST',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                password: password
-            })})
+        // fetch('http://localhost:8080', {
+        //     method: 'POST',
+        //     headers: {'Content-type': 'application/json'},
+        //     body: JSON.stringify({
+        //         firstName: firstName,
+        //         lastName: lastName,
+        //         email: email,
+        //         password: password
+        //     })})
 
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data)
-                if(data.error===false){
-                    isSuccess(true)
-                    setIsOpen(true)
-                }
-            })
-            .catch((err) => {
-                console.log(err.message);
-                isSuccess(false);
-            });
+        //     .then((response) => response.json())
+        //     .then((data) => {
+        //         console.log(data)
+        //         if(data.error===false){
+        //             isSuccess(true)
+        //             setIsOpen(true)
+        //         }
+        //     })
+        //     .catch((err) => {
+        //         console.log(err.message);
+        //         isSuccess(false);
+        //     });
         }
 
     const handleClose = ()=>{

@@ -25,9 +25,12 @@ export const AuthProvider = ({children})=>{
     const regNew = async (email, password) => {
         try{
             await createUserWithEmailAndPassword(auth, email, password);
+            console.log('entro')
         }
         catch(err){
-            await setSuError(err.message);
+            const error = err.message;
+            setSuError(error);
+            console.log('no entro: ', error)
         }
     }
 
