@@ -6,6 +6,7 @@ import { appendErrors, set, useForm } from 'react-hook-form';
 import { schema } from '../adduser/validations';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useAuth } from '../../context/authContext';
+import { Loader } from '../loader/loader';
 
 
 export const SignUp = ()=> {
@@ -49,8 +50,8 @@ export const SignUp = ()=> {
             :
             console.log(auth)
             switch(auth){
-                case 'Firebase: Error (auth/email-already-in-use).':
-                    setErrmsg('Mail already in use');
+                case '"Firebase: Error (auth/email-already-in-use)."':
+                    setErrmsg('Mail already in use, please choose another one');
                     break;
                 default:
                     console.log('no coincide');
@@ -81,8 +82,9 @@ export const SignUp = ()=> {
     });
 
     return (
+        <>
+        {fetching && <Loader />}
         <div className="all">
-            {fetching && <p>...loading</p>}
             {isOpen &&
             <Modal setIsOpen={setIsOpen} modalTitle={success===true? "Success" : "Something went wrong"}>
                 <p>{success ? "New account created" : null}</p>
@@ -96,7 +98,7 @@ export const SignUp = ()=> {
                 <h2>Sign up</h2>
             </div>
             <div className="form">
-                {errmsg && <span>{errmsg}-</span>}
+                {errmsg && <span className="error">{errmsg}</span>}
                 <form action="" onSubmit={handleSubmit(signUp)}>
                     <label htmlFor="">First Name</label>
                     <input type="text" {...register('firstName')} name="firstName" error={appendErrors.firstName?.message} value={firstName} onChange={(e)=>{setFirstName(e.target.value)}}/>
@@ -118,7 +120,7 @@ export const SignUp = ()=> {
                     </div>
                 </form>
             </div>
-
         </div>
+        </>
     )
 }
