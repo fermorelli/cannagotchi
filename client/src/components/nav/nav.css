@@ -12,3 +12,7 @@ nav {
     margin-left: 2rem;
     gap: 6rem;
 }
+
+.links span {
+    cursor: pointer;
+}

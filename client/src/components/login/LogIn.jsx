@@ -5,18 +5,41 @@ import { joiResolver } from '@hookform/resolvers/joi';
 import { useState } from 'react';
 import { useAuth } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
+import { Loader } from '../loader/loader';
 
 export const LogIn = ()=>{
 
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+    const [ fetching, isFetching ] = useState(false);
+    const [ errmsg, setErrmsg ] = useState('');
     const navigate = useNavigate();
     const { login } = useAuth();
 
+    const isAuth = ()=>{
+
+    }
+
     const logIn = (e)=>{
         e.preventDefault();
-        login(email,password);
-        navigate('/users')
+        isFetching(true);
+        login(email,password)
+        .then(()=>{
+            const auth = localStorage.getItem('auth');
+            console.log(auth);
+            auth === 'auth' ?
+                navigate('/users')
+                :
+                console.log(auth)
+                switch(auth){
+                    case '"Firebase: Error (auth/wrong-password)."':
+                        setErrmsg('Wrong password');
+                        break;
+                    default:
+                        console.log('no coincide');
+                }
+                isFetching(false)
+        })
     }
 
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -25,8 +48,11 @@ export const LogIn = ()=>{
     });
 
     return(
+        <>
+        {fetching && <Loader />}
         <div className="all">
             <h1>Log In</h1>
+            {errmsg && <span className="error">{errmsg}</span>}
             <form action="" onSubmit={handleSubmit(logIn)} className='form'>
                 <label htmlFor="">Email</label>
                 <input type="mail" {...register('email')} name="email" error={appendErrors.email?.message} value={email} onChange={(e)=>{setEmail(e.target.value)}} />
@@ -37,5 +63,6 @@ export const LogIn = ()=>{
                 <button action="submit" type='submit' onClick={logIn}>Log in</button>
             </form>
         </div>
+        </>
     )
 }

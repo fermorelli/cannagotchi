@@ -18,14 +18,7 @@ export const UserList = ()=> {
     const [ name, setName ] = useState('');
     const [ lastname, setLastName ] = useState('');
 
-    const navigate = useNavigate();
-
-    const { user, logout } = useAuth(); 
-
-    const handleLogOut = async () => {
-        await logout();
-        navigate('/')
-    }
+    const { user } = useAuth();
 
     const id = localStorage.getItem('id');
 
@@ -114,7 +107,6 @@ export const UserList = ()=> {
                     )})
                 }
             </div>
-            <button onClick={handleLogOut} id='logout'>Log out</button>
         </div>
     )
 }

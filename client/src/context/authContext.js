@@ -32,8 +32,15 @@ export const AuthProvider = ({children})=>{
         }
     }
 
-    const login = (email,password) => {
-        signInWithEmailAndPassword(auth, email, password);
+    const login = async (email,password) => {
+        try{
+            await signInWithEmailAndPassword(auth, email, password);
+            localStorage.setItem('auth', 'auth')
+        }
+        catch(err){
+            const error = err.message;
+            localStorage.setItem('auth', JSON.stringify(error))
+        }
     }
 
     const logout = ()=> {

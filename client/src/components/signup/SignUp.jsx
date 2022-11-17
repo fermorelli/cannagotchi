@@ -25,6 +25,7 @@ export const SignUp = ()=> {
     const addUser = ()=>{
 
         const auth = localStorage.getItem('auth');
+
         auth === 'auth' ?
         fetch('http://localhost:8080', {
             method: 'POST',
