@@ -19,6 +19,13 @@
     font-style: italic;
 }
 
+.header {
+    display: flex;
+    margin: 0;
+    gap: 2rem;
+    align-items: center;
+}
+
 .userCard h3 {
     font-weight: bold;
 }
@@ -29,14 +36,8 @@
     gap: 2rem;
 }
 
-.headerButtons{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.headerButtons a {
-    margin-top: 4px;
+.headerButtons {
+    border: 1px solid red;
 }
 
 .headerButtons svg {
