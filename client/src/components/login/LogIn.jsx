@@ -16,10 +16,6 @@ export const LogIn = ()=>{
     const navigate = useNavigate();
     const { login } = useAuth();
 
-    const isAuth = ()=>{
-
-    }
-
     const logIn = (e)=>{
         e.preventDefault();
         isFetching(true);
@@ -28,12 +24,15 @@ export const LogIn = ()=>{
             const auth = localStorage.getItem('auth');
             console.log(auth);
             auth === 'auth' ?
-                navigate('/users')
+                navigate('/')
                 :
                 console.log(auth)
                 switch(auth){
                     case '"Firebase: Error (auth/wrong-password)."':
                         setErrmsg('Wrong password');
+                        break;
+                    case '"Firebase: Error (auth/network-request-failed)."':
+                        setErrmsg('Network request failed')
                         break;
                     default:
                         console.log('no coincide');

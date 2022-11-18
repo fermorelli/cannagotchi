@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Modal from '../modal/modal';
 import { Link } from 'react-router-dom';
 import '../adduser/adduser.css'
-import { appendErrors, set, useForm } from 'react-hook-form';
+import { appendErrors, useForm } from 'react-hook-form';
 import { schema } from '../adduser/validations';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useAuth } from '../../context/authContext';
@@ -53,6 +53,9 @@ export const SignUp = ()=> {
             switch(auth){
                 case '"Firebase: Error (auth/email-already-in-use)."':
                     setErrmsg('Mail already in use, please choose another one');
+                    break;
+                case '"Firebase: Error (auth/network-request-failed)."':
+                    setErrmsg('Network request failed')
                     break;
                 default:
                     console.log('no coincide');

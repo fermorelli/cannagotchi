@@ -5,13 +5,11 @@ import { GoTrashcan } from 'react-icons/go'
 import { Link } from "react-router-dom";
 import Modal from "../modal/modal";
 import { useAuth } from "../../context/authContext";
-import { useNavigate } from 'react-router-dom';
 
 export const UserList = ()=> {
 
     const [ users, setUsers ] = useState([]);
     const [ show, setShow ] = useState(false);
-    const [ list, setList ] = useState(false);
     const [ isOpen, setIsOpen ] = useState(false);
     const [ confirm, setConfirm ] = useState(false);
     const [ ID, setID ] = useState('');
@@ -24,7 +22,6 @@ export const UserList = ()=> {
 
     const ifPrevData = ()=>{
         if(id.length>0){
-            setList(true)
             setShow(true)
         }
     }
@@ -77,18 +74,14 @@ export const UserList = ()=> {
                     </Link>
                 </div>
             </Modal>}
-            {user && <span>Welcome {user.email}</span>}
-            <div className="header">
-                <h2 onClick={()=>{
-                    setList(!list)
-                    setShow(false);
-                    }} className="title">{list ? "Hide user list" : "Show user list"}</h2>
+            <div className="headerList">
+                <h2>User list</h2>
                 <div className="editButtons">
-                    <button onClick={()=>setShow(true)} className={!show && list ? "" : "disabled" }>Edit users</button>
+                    <button onClick={()=>setShow(true)} className={!show ? "" : "disabled" }>Edit users</button>
                     <button onClick={()=>setShow(false)} className={show ? "" : "disabled" }>Done</button>
                 </div>
             </div>
-            <div className={list ? "userList" : "disabled"}>
+            <div className="userList">
                 {users.map((user)=>{
                     return(
                         <div className="userCard" key={user._id}>

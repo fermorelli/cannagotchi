@@ -9,7 +9,9 @@
 }
 
 .userCard {
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
 }
 
 .userCard span {
@@ -21,14 +23,10 @@
     font-weight: bold;
 }
 
-.header {
+.headerList {
     display: flex;
+    align-content: center;
     gap: 2rem;
-}
-
-.header h2 {
-    cursor: pointer;
-    text-decoration: underline;
 }
 
 .headerButtons{
