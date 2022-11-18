@@ -18,6 +18,7 @@ export const Nav = ()=>{
         <nav>
             <div className="links">
                 <Link to={'/'}><span>Crud MERN Stack</span></Link>
+                <Link to={'/'}>Home</Link>
                 {user ?
                     <>
                         <Link to={'/users'}>Users</Link>
