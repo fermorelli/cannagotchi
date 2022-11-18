@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { useAuth } from "../../context/authContext"
-import { auth } from "../../firebase/firebase";
+import { useAuth } from "../../context/authContext";
+import { Link } from "react-router-dom";
 import './home.css';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
+import { BsFillPencilFill } from 'react-icons/bs';
 
 export const Home = ()=>{
 
@@ -44,7 +45,12 @@ export const Home = ()=>{
         </div>
         <div className="body">
             <div className="user__card">
-                <h3 className="title">My personal profile</h3>
+                <div className="card__header">
+                    <h3 className="title">My personal profile</h3>
+                    <Link to={`/edit-user/${authUser._id}`}>
+                        <BsFillPencilFill/>
+                    </Link>
+                </div>
                 <div className="fields">
                     <span>Name</span>
                     <span className="data">{authUser.firstName}</span>

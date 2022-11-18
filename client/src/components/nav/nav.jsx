@@ -18,9 +18,9 @@ export const Nav = ()=>{
         <nav>
             <div className="links">
                 <Link to={'/'}><span>Crud MERN Stack</span></Link>
-                <Link to={'/'}>Home</Link>
                 {user ?
                     <>
+                        <Link to={'/'}>Home</Link>
                         <Link to={'/users'}>Users</Link>
                         <Link to={'/add-user'}>Add User</Link>
                         <span onClick={handleLogOut} id='logout'>Log out</span>

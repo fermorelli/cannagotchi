@@ -36,3 +36,10 @@
     gap: 1rem;
     align-items: center;
 }
+
+.card__header {
+    display: flex;
+    gap: 2rem;
+    align-content: center;
+    border: 1px solid red;
+}
