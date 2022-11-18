@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useAuth } from "../../context/authContext"
+import { auth } from "../../firebase/firebase";
 import './home.css';
 
 export const Home = ()=>{
@@ -19,35 +20,29 @@ export const Home = ()=>{
         const response = await fetch('http://localhost:8080/users');
         const data = await response.json();
         setUsers(data.data);
-        users.map((user)=>{
-            if(user.email===currentUser.email){
-                return setId(user._id);
-            }
-            return(
-                console.log('id: ',id)
-            )
-        })
+        aver();
     }
 
-    const getCurrentUser = async ()=>{
-        const response = await fetch(`http://localhost:8080/users/${id}`);
-        const data = await response.json();
-        console.log('current user: ', data.data)
-        setAuthUser(data.data)
+    const finding = (user)=>{
+        return user?.email === currentUser?.email;
+    }
+
+    const aver = ()=>{
+        setAuthUser(users.find(finding));
+        console.log('a: ', authUser)
     }
 
     useEffect(()=>{
         getUsers()
-        getCurrentUser()
-    },[])
+    },[authUser])
 
     return (
         <>
         <div className="header">
             {user &&
-                <h2>Welcome {currentUser.email}</h2>}
+                <h2>Welcome {currentUser?.email}</h2>}
         </div>
-        {authUser &&
+        {authUser && user &&
             <div className="body">
                 <div className="user__card">
                         <h3>{authUser.firstName} {authUser.lastName}</h3>
