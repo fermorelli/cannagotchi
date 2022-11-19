@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Modal from '../modal/modal';
-import { Link, useParams  } from 'react-router-dom';
+import { Link, useParams, useNavigate  } from 'react-router-dom';
 import './editUser.css'
 import { useEffect } from 'react';
 
@@ -18,6 +18,8 @@ export const EditUser = ()=> {
     const id = params.id;
     localStorage.setItem('id', id);
 
+    const navigate = useNavigate();
+
     const getUser = async () =>{
         const response = await fetch(`http://localhost:8080/users/${id}`);
         const data = await response.json();
@@ -34,6 +36,7 @@ export const EditUser = ()=> {
         setLastName('');
         setEmail('');
         setPassword('');
+        navigate(-1);
     }
 
     const editUser = (e) =>{
@@ -68,9 +71,7 @@ export const EditUser = ()=> {
             <Modal setIsOpen={setIsOpen} modalTitle={success===true? "Success" : "Something went wrong"}>
                 <p>{success ? "User successfully updated" : null}</p>
                 <div className='addModalButtons'>
-                    <Link to={'/users'}>
-                        <button onClick={handleClose}>Go back</button>
-                    </Link>
+                    <button onClick={handleClose}>Go back</button>
                 </div>
             </Modal>}
             <div className="title">
@@ -88,9 +89,7 @@ export const EditUser = ()=> {
                     <input type="password" placeholder={data.password} value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
                     <div className='formButtons'>
                         <button type="submit" onClick={editUser}>Update</button>
-                        <Link to={'/users'}>
-                            <button>Go back</button>
-                        </Link>
+                        <button onClick={()=>navigate('/')}>Go back</button>
                     </div>
                 </form>
             </div>

@@ -29,7 +29,6 @@ export const Home = ()=>{
 
     const aver = ()=>{
         setAuthUser(users.find(finding));
-        console.log('a: ', authUser)
     }
 
     useEffect(()=>{

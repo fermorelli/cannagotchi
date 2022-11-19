@@ -1,21 +1,38 @@
 import './nav.css'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../context/authContext'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Modal from '../modal/modal'
 
 export const Nav = ()=>{
+    const [ isOpen, setIsOpen ] = useState(false);
+    const [ confirm, setConfirm ] = useState(false);
 
     const { user, logout } = useAuth();
 
     const navigate = useNavigate();
 
     const handleLogOut = async () => {
+        setIsOpen(false);
         await logout();
         navigate('/')
     }
 
+    const handleClose = ()=>{
+        setIsOpen(false);
+        setConfirm(false)
+    }
+
     return (
         <nav>
+            {isOpen &&
+            <Modal setIsOpen={setIsOpen} modalTitle={!confirm && "Are you sure you want to exit?"}>
+                    <div className='addModalButtons'>
+                        <button onClick={handleLogOut} className={confirm? "disabled" : null}>Yes</button>
+                        <span style={{cursor:'pointer'}} onClick={handleClose}>{!confirm && 'Cancel'}</span>
+                    </div>
+                </Modal>}
             <div className="links">
                 <Link to={'/'}><span>Crud MERN Stack</span></Link>
                 {user ?
@@ -23,7 +40,7 @@ export const Nav = ()=>{
                         <Link to={'/'}>Home</Link>
                         <Link to={'/users'}>Users</Link>
                         <Link to={'/add-user'}>Add User</Link>
-                        <span onClick={handleLogOut} id='logout'>Log out</span>
+                        <span onClick={()=>{setIsOpen(true)}} id='logout'>Log out</span>
                     </>
                 :
                     <>

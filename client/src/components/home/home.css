@@ -41,5 +41,9 @@
     display: flex;
     gap: 2rem;
     align-content: center;
-    border: 1px solid red;
+    justify-content: space-between;
+}
+
+.card__header svg {
+    margin-top: 5px;
 }
