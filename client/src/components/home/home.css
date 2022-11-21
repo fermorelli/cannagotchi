@@ -47,3 +47,20 @@
 .card__header svg {
     margin-top: 5px;
 }
+
+.all_plants {
+   display: flex;
+   flex-direction: column;
+   gap: 2rem;
+}
+
+.plant_card {
+    display: flex;
+    flex-direction: column;
+}
+
+.plant_attribute {
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
+}

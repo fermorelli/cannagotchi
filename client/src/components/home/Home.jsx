@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import './home.css';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { BsFillPencilFill } from 'react-icons/bs';
-import { auth } from "../../firebase/firebase";
 
 export const Home = ()=>{
 
@@ -13,6 +12,7 @@ export const Home = ()=>{
     const [ showing, isShowing ] = useState(false);
     const [ authUser, setAuthUser ] = useState({});
     const [ plants, setPlants ] = useState([]);
+    const [ date, setDate ] = useState('');
 
     const { user } = useAuth();
 
@@ -32,18 +32,23 @@ export const Home = ()=>{
     const aver = ()=>{
         setAuthUser(users.find(finding));
         setPlants(authUser.plants);
+        setDate(plants.germination_date);
     }
 
     useEffect(()=>{
         getUsers()
     },[authUser])
 
+    // const harvest = ()=>{
+
+    // }
+
     return (
         <>
         {user && authUser &&
         <>
         <button onClick={()=>{
-            console.log(authUser)
+            console.log(plants.plant_family)
         }}>dale</button>
         <div className="header">
             <h2>Welcome {authUser.firstName} {authUser.lastName}</h2>
@@ -68,11 +73,47 @@ export const Home = ()=>{
                         <span className="data">{showing ? authUser.password : '********'}</span>
                         {!showing ? <AiOutlineEye onClick={()=>{isShowing(true)}} /> : <AiOutlineEyeInvisible onClick={()=>{isShowing(false)}} />}
                     </div>
-                    <div>{plants?.map((plant)=>{
+                    <span>Plants</span>
+                    <div className="all_plants">{plants?.map((plant)=>{
+                            // const date = plant.germination_date;
+                            // const family = plant.plant_family;
+                            // const miliDate = Date.parse(date);
+                            // const fourMonths = 10368000000;
+                            // const threeMonths = 7776000000;
+                            // const operationS = miliDate + fourMonths;
+                            // const finalDateS = new Date(operationS);
+                            // const resultS = finalDateS.toLocaleString('en-GB')
+                            // const operationI = miliDate + threeMonths;
+                            // const finalDateI = new Date(operationI);
+                            // const resultI = finalDateI.toLocaleString('en-GB')
+                            // switch (family) {
+                            //     case 'Indica' :
+                            //         console.log(resultI);
+                            //         break;
+                            //     case 'Sativa':
+                            //         console.log(resultS)
+                            //         break;
+                            //     default:
+                            //         console.log('nada');
+                            // }
                             return(
-                                <div className="plants_card">
-                                    <h2>{plant.plant_name}</h2>
-                                    <span>{plant.plant_family}</span>
+                                <div className="plant_card">
+                                    <div className="plant_attribute">
+                                        <span>Genetic</span>
+                                        <span>{plant.plant_name}</span>
+                                    </div>
+                                    <div className="plant_attribute">
+                                        <span>Family</span>
+                                        <span>{plant.plant_family}</span>
+                                    </div>
+                                    <div className="plant_attribute">
+                                        <span>Germinated</span>
+                                        <span>{plant.germination_date}</span>
+                                    </div>
+                                    <div className="plant_attribute">
+                                        <span>Potentially harvest date</span>
+                                        <span>{date}</span>
+                                    </div>
                                 </div>
                             )
                     })}</div>
