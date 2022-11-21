@@ -7,6 +7,7 @@ import { LogIn } from './components/login/LogIn';
 import { SignUp } from './components/signup/SignUp';
 import { AuthProvider } from './context/authContext';
 import { Home } from './components/home/Home';
+import { Plants } from './components/plants/plants';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path='/signup' element={<SignUp />} exact></Route>
               <Route path='/users' element={<UserList />} exact></Route>
               <Route path='/add-user' element={<AddUser />} exact></Route>
+              <Route path='/plants' element={<Plants />} exact></Route>
               <Route path='/edit-user/:id' element={<EditUser />} exact></Route>
             </Routes>
           </Router>

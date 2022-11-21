@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 import './home.css';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { BsFillPencilFill } from 'react-icons/bs';
+import { auth } from "../../firebase/firebase";
 
 export const Home = ()=>{
 
     const [ users, setUsers ] = useState([]);
     const [ showing, isShowing ] = useState(false);
-    const [ authUser, setAuthUser ] = useState({})
+    const [ authUser, setAuthUser ] = useState({});
+    const [ plants, setPlants ] = useState([]);
 
     const { user } = useAuth();
 
@@ -29,6 +31,7 @@ export const Home = ()=>{
 
     const aver = ()=>{
         setAuthUser(users.find(finding));
+        setPlants(authUser.plants);
     }
 
     useEffect(()=>{
@@ -39,6 +42,9 @@ export const Home = ()=>{
         <>
         {user && authUser &&
         <>
+        <button onClick={()=>{
+            console.log(authUser)
+        }}>dale</button>
         <div className="header">
             <h2>Welcome {authUser.firstName} {authUser.lastName}</h2>
         </div>
@@ -62,7 +68,14 @@ export const Home = ()=>{
                         <span className="data">{showing ? authUser.password : '********'}</span>
                         {!showing ? <AiOutlineEye onClick={()=>{isShowing(true)}} /> : <AiOutlineEyeInvisible onClick={()=>{isShowing(false)}} />}
                     </div>
-
+                    <div>{plants?.map((plant)=>{
+                            return(
+                                <div className="plants_card">
+                                    <h2>{plant.plant_name}</h2>
+                                    <span>{plant.plant_family}</span>
+                                </div>
+                            )
+                    })}</div>
                 </div>
             </div>
         </div>

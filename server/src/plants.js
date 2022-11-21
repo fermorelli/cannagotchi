@@ -2,27 +2,27 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
-    firstName : {
+const plantSchema = new Schema({
+    user : {
         type: String,
         required: true,
     },
-    lastName : {
+    plant_name : {
         type: String,
         required: true,
     },
-    email : {
+    plant_family : {
         type: String,
         required: true,
     },
-    password : {
-        type: String,
+    germination_date : {
+        type: Date,
         required: true,
     },
-    plants : {
-        type: Array,
-        required: false
+    grow_mode : {
+        type: String,
+        required: true
     }
 })
 
-export default mongoose.model('Users', userSchema);
+export default mongoose.model('Plants', plantSchema);

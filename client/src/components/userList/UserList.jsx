@@ -15,6 +15,7 @@ export const UserList = ()=> {
     const [ ID, setID ] = useState('');
     const [ name, setName ] = useState('');
     const [ lastname, setLastName ] = useState('');
+    // const [ plants, setPlants ] = useState([]);
 
     const { user } = useAuth();
 
@@ -36,6 +37,7 @@ export const UserList = ()=> {
     useEffect(()=>{
         getUsers();
         localStorage.removeItem('id');
+        console.log(users.plants)
     },[user])
 
     const handleChange = (id, firstName, lastName)=>{
@@ -96,6 +98,14 @@ export const UserList = ()=> {
                                 </div>
                             </div>
                             <span>{user.email}</span>
+                            {/* <div>{plants?.map((plant)=>{
+                                return(
+                                    <div className="plants_card">
+                                        <h2>{plant.plant_name}</h2>
+                                        <span>{plant.plant_family}</span>
+                                    </div>
+                                )
+                            })}</div> */}
                         </div>
                     )})
                 }
