@@ -3,10 +3,6 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const plantSchema = new Schema({
-    user : {
-        type: String,
-        required: true,
-    },
     plant_name : {
         type: String,
         required: true,

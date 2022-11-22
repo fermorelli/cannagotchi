@@ -73,30 +73,29 @@ const createUser = async (req, res) => {
     }
 }
 
-// const createPlant = async (req, res) => {
-//   try {
-//       const plant = new Plants({
-//           user: req.body.user,
-//           plant_name: req.body.plant_name,
-//           plant_family: req.body.plant_family,
-//           germination_date: req.body.germination_date,
-//           grow_mode: req.body.grow_mode,
-//       });
+const createPlant = async (req, res) => {
+  try {
+      const plant = new Plants({
+          plant_name: req.body.plant_name,
+          plant_family: req.body.plant_family,
+          germination_date: req.body.germination_date,
+          grow_mode: req.body.grow_mode,
+      });
 
-//       const result = await plant.save();
-//       return res.status(201).json({
-//           message: 'Plant successfully added',
-//           data: result,
-//           error: false,
-//       });
-//   } catch (error) {
-//       return res.status(400).json({
-//           message: 'Error when adding new plant',
-//           data: {},
-//           error: true,
-//       })
-//   }
-// }
+      const result = await plant.save();
+      return res.status(201).json({
+          message: 'Plant successfully added',
+          data: result,
+          error: false,
+      });
+  } catch (error) {
+      return res.status(400).json({
+          message: 'Error when adding new plant',
+          data: {},
+          error: true,
+      })
+  }
+}
 
 const deleteUser = async (req, res) => {
     try {
@@ -198,5 +197,6 @@ const deleteUser = async (req, res) => {
     getAllUsers,
     getUserById,
     updateUser,
-    deleteUser
+    deleteUser,
+    createPlant
   }

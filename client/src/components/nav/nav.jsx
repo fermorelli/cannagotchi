@@ -41,6 +41,7 @@ export const Nav = ()=>{
                         <Link to={'/users'}>Users</Link>
                         <Link to={'/add-user'}>Add User</Link>
                         <Link to={'/plants'}>My Plants</Link>
+                        <Link to={'/add-plant'}>Add Plant</Link>
                         <span onClick={()=>{setIsOpen(true)}} id='logout'>Log out</span>
                     </>
                 :
