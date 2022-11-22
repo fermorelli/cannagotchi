@@ -1,0 +1,28 @@
+#title{
+    margin: 1rem 0 0 1rem;
+}
+
+.all_plants {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    gap: 2rem;
+    margin: 1rem 0 0 1rem;
+ }
+
+ .plant_card {
+     display: flex;
+     flex-direction: column;
+     padding: 1rem;
+     background-color: rgba(50, 50, 50, 0.4);
+     border-radius: 10px;
+ }
+
+ .plant_attribute {
+     display: flex;
+     justify-content: space-between;
+ }
+
+ .plant_attribute span {
+    font-style: italic;
+ }
