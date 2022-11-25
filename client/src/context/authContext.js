@@ -13,10 +13,12 @@ export const AuthProvider = ({children})=>{
 
     const [ user, setUser ] = useState(null);
     const [ users, setUsers ] = useState([]);
+    const [ plants, setPlants ] = useState([]);
     const [ authUser, setAuthUser ] = useState({});
 
     useEffect(()=>{
         getUsers();
+        getPlants();
         onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             localStorage.setItem('user', JSON.stringify(currentUser));
@@ -34,6 +36,12 @@ export const AuthProvider = ({children})=>{
         const response = await fetch('http://localhost:8080/users');
         const data = await response.json();
         setUsers(data.data)
+    }
+
+    const getPlants = () => {
+        fetch(`http://localhost:8080/plants`)
+        .then(response=> response.json())
+        .then(data => setPlants(data.data))
     }
 
     const regNew = async (email, password) => {
@@ -64,7 +72,7 @@ export const AuthProvider = ({children})=>{
     }
 
     return(
-        <authContext.Provider value={{regNew, login, logout, user, users, authUser}}>
+        <authContext.Provider value={{regNew, login, logout, user, users, authUser, plants}}>
             {children}
         </authContext.Provider>
     )

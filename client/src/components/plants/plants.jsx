@@ -1,28 +1,23 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "../../context/authContext";
 import './plants.css'
 
 export const Plants = ()=>{
 
-    const [ plants, setPlants ] = useState({});
+    const [ myPlants, setMyPlants ] = useState([]);
 
-    const getPlants = async () => {
-        const response = await fetch(`http://localhost:8080/plants`);
-        const data = await response.json()
-        console.log(data.data);
-        setPlants(data.data);
-    }
+    const { plants,authUser } = useAuth();
+
 
     useEffect(()=>{
-        getPlants()
+        plants && setMyPlants(plants.filter(plant => plant.user_id === authUser._id))
     }, [])
-
-
 
     return (
         <>
         <h1 id="title">My plants</h1>
         <div className="all_plants">
-            {plants?.map((plant)=>{
+            {myPlants.map((plant)=>{
                 return(
                     <div className="plant_card">
                         <div className="plant_attribute">
@@ -48,26 +43,3 @@ export const Plants = ()=>{
         </>
     )
 };
-    // const harvest = ()=>{
-                            // const date = plant.germination_date;
-                            // const family = plant.plant_family;
-                            // const miliDate = Date.parse(date);
-                            // const fourMonths = 10368000000;
-                            // const threeMonths = 7776000000;
-                            // const operationS = miliDate + fourMonths;
-                            // const finalDateS = new Date(operationS);
-                            // const resultS = finalDateS.toLocaleString('en-GB')
-                            // const operationI = miliDate + threeMonths;
-                            // const finalDateI = new Date(operationI);
-                            // const resultI = finalDateI.toLocaleString('en-GB')
-                            // switch (family) {
-                            //     case 'Indica' :
-                            //         console.log(resultI);
-                            //         break;
-                            //     case 'Sativa':
-                            //         console.log(resultS)
-                            //         break;
-                            //     default:
-                            //         console.log('nada');
-                            // }
-    // }
