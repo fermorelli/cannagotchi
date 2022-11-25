@@ -9,8 +9,13 @@ import { BsFillPencilFill } from 'react-icons/bs';
 export const Home = ()=>{
 
     const [ showing, isShowing ] = useState(false);
+    const [ myPlants, setMyPlants ] = useState([]);
 
-    const { user, authUser } = useAuth();
+    const { user, authUser, plants } = useAuth();
+
+    useEffect(()=>{
+        plants && setMyPlants(plants.filter(plant => plant.user_id === authUser._id))
+    }, [])
 
     return (
         <>
@@ -40,7 +45,7 @@ export const Home = ()=>{
                         {!showing ? <AiOutlineEye onClick={()=>{isShowing(true)}} /> : <AiOutlineEyeInvisible onClick={()=>{isShowing(false)}} />}
                     </div>
                     <span>Plants</span>
-                    <p>{authUser.plants?.length}</p>
+                    <p>{myPlants?.length}</p>
                 </div>
             </div>
         </div>

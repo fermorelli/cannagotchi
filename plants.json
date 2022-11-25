@@ -1,0 +1,402 @@
+[
+  {
+    "user_id": { "$oid": "636e6269f1af1e68e533b4e3" },
+    "plant_name": "New Mexico Fameflower",
+    "genetic": "Indica",
+    "grow_mode": "Interior",
+    "auto": true,
+    "germination_date": "2022-10-20"
+  },
+  {
+    "user_id": { "$oid": "636e6269f1af1e68e533b4e3" },
+    "plant_name": "Mountain Hemlock",
+    "genetic": "Indica-dominating breed",
+    "grow_mode": "Exterior",
+    "auto": true,
+    "germination_date": "2022-07-19"
+  },
+  {
+    "user_id": { "$oid": "636e6269f1af1e68e533b4e3" },
+    "plant_name": "Henry Indian Paintbrush",
+    "genetic": "Sativa",
+    "grow_mode": "Exterior",
+    "auto": false,
+    "germination_date": "2022-08-03"
+  },
+  {
+    "user_id": { "$oid": "636e6269f1af1e68e533b4e3" },
+    "plant_name": "Carolina Wild Petunia",
+    "genetic": "Sativa-dominating breed",
+    "grow_mode": "Exterior",
+    "auto": true,
+    "germination_date": "2022-06-27"
+  },
+  {
+    "user_id": { "$oid": "636e6269f1af1e68e533b4e3" },
+    "plant_name": "Sage",
+    "genetic": "Sativa-dominating breed",
+    "grow_mode": "Exterior",
+    "auto": false,
+    "germination_date": "2022-06-29"
+  },
+  {
+    "user_id": { "$oid": "636e6269f1af1e68e533b4e3" },
+    "plant_name": "Hapeman's Coolwort",
+    "genetic": "Sativa-dominating breed",
+    "grow_mode": "Exterior",
+    "auto": true,
+    "germination_date": "2022-08-12"
+  },
+  {
+    "user_id": { "$oid": "636e6269f1af1e68e533b4e3" },
+    "plant_name": "Baretwig Neststraw",
+    "genetic": "Sativa-dominating breed",
+    "grow_mode": "Exterior",
+    "auto": true,
+    "germination_date": "2022-09-11"
+  },
+  {
+    "user_id": { "$oid": "636e6269f1af1e68e533b4e3" },
+    "plant_name": "Cajeput Tree",
+    "genetic": "Sativa",
+    "grow_mode": "Exterior",
+    "auto": true,
+    "germination_date": "2022-11-03"
+  },
+  {
+    "user_id": { "$oid": "636e6269f1af1e68e533b4e3" },
+    "plant_name": "Field Locoweed",
+    "genetic": "Indica",
+    "grow_mode": "Interior",
+    "auto": true,
+    "germination_date": "2022-09-03"
+  },
+  {
+    "user_id": { "$oid": "636e6269f1af1e68e533b4e3" },
+    "plant_name": "Lilies-of-the-field",
+    "genetic": "Indica-dominating breed",
+    "grow_mode": "Interior",
+    "auto": true,
+    "germination_date": "2022-10-20"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000040" },
+    "plant_name": "Slender Rosette Grass",
+    "genetic": "Sativa",
+    "grow_mode": "Interior",
+    "auto": false,
+    "germination_date": "2022-11-05"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000041" },
+    "plant_name": "Lineleaf Whitepuff",
+    "genetic": "Sativa",
+    "grow_mode": "Interior",
+    "auto": true,
+    "germination_date": "2022-10-31"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000042" },
+    "plant_name": "Westwater Tumblemustard",
+    "genetic": "Sativa",
+    "grow_mode": "Exterior",
+    "auto": true,
+    "germination_date": "2022-11-09"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000043" },
+    "plant_name": "Upright Chickweed",
+    "genetic": "Indica",
+    "grow_mode": "Exterior",
+    "auto": true,
+    "germination_date": "2022-06-04"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000044" },
+    "plant_name": "Winterberry Euonymus",
+    "genetic": "Sativa-dominating breed",
+    "grow_mode": "Exterior",
+    "auto": false,
+    "germination_date": "2022-07-22"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000045" },
+    "plant_name": "Seminole Balsamo",
+    "genetic": "Indica",
+    "grow_mode": "Interior",
+    "auto": true,
+    "germination_date": "2022-06-14"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000046" },
+    "plant_name": "Walker's Necklace Fern",
+    "genetic": "Sativa-dominating breed",
+    "grow_mode": "Exterior",
+    "auto": false,
+    "germination_date": "2022-06-23"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000047" },
+    "plant_name": "Upland Highbush Blueberry",
+    "genetic": "Sativa-dominating breed",
+    "grow_mode": "Exterior",
+    "auto": true,
+    "germination_date": "2022-08-20"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000048" },
+    "plant_name": "Rockland Morning-glory",
+    "genetic": "Indica-dominating breed",
+    "grow_mode": "Interior",
+    "auto": false,
+    "germination_date": "2022-08-28"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000049" },
+    "plant_name": "Dwarf Huckleberry",
+    "genetic": "Sativa",
+    "grow_mode": "Interior",
+    "auto": false,
+    "germination_date": "2022-10-07"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f00004a" },
+    "plant_name": "Myrtle Of The River",
+    "genetic": "Sativa-dominating breed",
+    "grow_mode": "Interior",
+    "auto": false,
+    "germination_date": "2022-09-29"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f00004b" },
+    "plant_name": "Slender Bird's Beak",
+    "genetic": "Sativa-dominating breed",
+    "grow_mode": "Exterior",
+    "auto": false,
+    "germination_date": "2022-08-24"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f00004c" },
+    "plant_name": "Orthilia",
+    "genetic": "Sativa",
+    "grow_mode": "Interior",
+    "auto": false,
+    "germination_date": "2022-10-14"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f00004d" },
+    "plant_name": "Orange Lichen",
+    "genetic": "Indica-dominating breed",
+    "grow_mode": "Exterior",
+    "auto": false,
+    "germination_date": "2022-08-31"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f00004e" },
+    "plant_name": "Divergent Buckwheat",
+    "genetic": "Sativa",
+    "grow_mode": "Exterior",
+    "auto": false,
+    "germination_date": "2022-09-02"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f00004f" },
+    "plant_name": "Cyrtandra",
+    "genetic": "Sativa-dominating breed",
+    "grow_mode": "Interior",
+    "auto": false,
+    "germination_date": "2022-07-26"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000050" },
+    "plant_name": "Remy's Pepperweed",
+    "genetic": "Indica",
+    "grow_mode": "Exterior",
+    "auto": true,
+    "germination_date": "2022-08-23"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000051" },
+    "plant_name": "Bluejack Oak",
+    "genetic": "Sativa",
+    "grow_mode": "Interior",
+    "auto": true,
+    "germination_date": "2022-07-19"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000052" },
+    "plant_name": "White Garland-lily",
+    "genetic": "Indica",
+    "grow_mode": "Exterior",
+    "auto": true,
+    "germination_date": "2022-06-11"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000053" },
+    "plant_name": "Purple Vetch",
+    "genetic": "Indica",
+    "grow_mode": "Interior",
+    "auto": true,
+    "germination_date": "2022-08-12"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000054" },
+    "plant_name": "Serpentine Bird's Beak",
+    "genetic": "Sativa",
+    "grow_mode": "Interior",
+    "auto": false,
+    "germination_date": "2022-06-18"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000055" },
+    "plant_name": "Mountain Filmy Fern",
+    "genetic": "Sativa-dominating breed",
+    "grow_mode": "Exterior",
+    "auto": false,
+    "germination_date": "2022-06-23"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000056" },
+    "plant_name": "Arizona Spikerush",
+    "genetic": "Indica",
+    "grow_mode": "Interior",
+    "auto": false,
+    "germination_date": "2022-06-28"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000057" },
+    "plant_name": "Moluccella",
+    "genetic": "Sativa",
+    "grow_mode": "Exterior",
+    "auto": false,
+    "germination_date": "2022-07-31"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000058" },
+    "plant_name": "Yellow Wildrye",
+    "genetic": "Indica-dominating breed",
+    "grow_mode": "Interior",
+    "auto": true,
+    "germination_date": "2022-08-23"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000059" },
+    "plant_name": "Kings River Buckwheat",
+    "genetic": "Sativa-dominating breed",
+    "grow_mode": "Exterior",
+    "auto": false,
+    "germination_date": "2022-07-07"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f00005a" },
+    "plant_name": "Leptodictyum Moss",
+    "genetic": "Indica",
+    "grow_mode": "Interior",
+    "auto": true,
+    "germination_date": "2022-06-23"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f00005b" },
+    "plant_name": "Owyhee Milkvetch",
+    "genetic": "Sativa-dominating breed",
+    "grow_mode": "Interior",
+    "auto": true,
+    "germination_date": "2022-06-02"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f00005c" },
+    "plant_name": "Gymnosperma",
+    "genetic": "Indica",
+    "grow_mode": "Interior",
+    "auto": true,
+    "germination_date": "2022-10-11"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f00005d" },
+    "plant_name": "Rinodina Lichen",
+    "genetic": "Sativa",
+    "grow_mode": "Interior",
+    "auto": true,
+    "germination_date": "2022-10-31"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f00005e" },
+    "plant_name": "Rose Natal Grass",
+    "genetic": "Sativa-dominating breed",
+    "grow_mode": "Interior",
+    "auto": false,
+    "germination_date": "2022-07-03"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f00005f" },
+    "plant_name": "Funnel Lily",
+    "genetic": "Sativa",
+    "grow_mode": "Interior",
+    "auto": false,
+    "germination_date": "2022-10-19"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000060" },
+    "plant_name": "Florida Vetch",
+    "genetic": "Indica",
+    "grow_mode": "Interior",
+    "auto": false,
+    "germination_date": "2022-07-31"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000061" },
+    "plant_name": "Southern Island Mallow",
+    "genetic": "Indica",
+    "grow_mode": "Interior",
+    "auto": false,
+    "germination_date": "2022-09-24"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000062" },
+    "plant_name": "Palisade Grass",
+    "genetic": "Indica",
+    "grow_mode": "Exterior",
+    "auto": true,
+    "germination_date": "2022-06-04"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000063" },
+    "plant_name": "Telephus Spurge",
+    "genetic": "Indica-dominating breed",
+    "grow_mode": "Exterior",
+    "auto": true,
+    "germination_date": "2022-09-01"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000064" },
+    "plant_name": "Porter's Licorice-root",
+    "genetic": "Sativa",
+    "grow_mode": "Exterior",
+    "auto": true,
+    "germination_date": "2022-08-31"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000065" },
+    "plant_name": "Barbwire Grass",
+    "genetic": "Indica",
+    "grow_mode": "Exterior",
+    "auto": false,
+    "germination_date": "2022-11-14"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000066" },
+    "plant_name": "Tall Oatgrass",
+    "genetic": "Sativa-dominating breed",
+    "grow_mode": "Interior",
+    "auto": true,
+    "germination_date": "2022-07-24"
+  },
+  {
+    "user_id": { "$oid": "63811043fc13ae683f000067" },
+    "plant_name": "Darrow's Buckwheat",
+    "genetic": "Sativa-dominating breed",
+    "grow_mode": "Exterior",
+    "auto": true,
+    "germination_date": "2022-09-07"
+  }
+]
