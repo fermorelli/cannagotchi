@@ -12,14 +12,29 @@ export const useAuth = () =>{
 export const AuthProvider = ({children})=>{
 
     const [ user, setUser ] = useState(null);
+    const [ users, setUsers ] = useState([]);
+    const [ authUser, setAuthUser ] = useState({});
 
     useEffect(()=>{
+        getUsers();
         onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            console.log('user: ', currentUser);
             localStorage.setItem('user', JSON.stringify(currentUser));
-        });
+        })
+        const userMatch = ()=>{
+            const finding = usuario => usuario?.email === user?.email
+            setAuthUser(users.find(finding));
+            console.log(authUser)
+        }
+        userMatch();
+        ;
     },[user])
+
+    const getUsers = async () => {
+        const response = await fetch('http://localhost:8080/users');
+        const data = await response.json();
+        setUsers(data.data)
+    }
 
     const regNew = async (email, password) => {
         try{
@@ -49,7 +64,7 @@ export const AuthProvider = ({children})=>{
     }
 
     return(
-        <authContext.Provider value={{regNew, login, logout, user}}>
+        <authContext.Provider value={{regNew, login, logout, user, users, authUser}}>
             {children}
         </authContext.Provider>
     )

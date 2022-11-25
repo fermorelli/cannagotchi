@@ -8,35 +8,9 @@ import { BsFillPencilFill } from 'react-icons/bs';
 
 export const Home = ()=>{
 
-    const [ users, setUsers ] = useState([]);
     const [ showing, isShowing ] = useState(false);
-    const [ authUser, setAuthUser ] = useState({});
-    const [ plants, setPlants ] = useState([]);
 
-    const { user } = useAuth();
-
-    const currentUser = user;
-
-    const getUsers = async () => {
-        const response = await fetch('http://localhost:8080/users');
-        const data = await response.json();
-        setUsers(data.data);
-        aver();
-    }
-
-    const finding = (user)=>{
-        return user?.email === currentUser?.email;
-    }
-
-    const aver = ()=>{
-        setAuthUser(users.find(finding));
-        setPlants(authUser.plants);
-        localStorage.setItem('id', authUser._id);
-    }
-
-    useEffect(()=>{
-        getUsers()
-    },[authUser])
+    const { user, authUser } = useAuth();
 
     return (
         <>
@@ -66,7 +40,7 @@ export const Home = ()=>{
                         {!showing ? <AiOutlineEye onClick={()=>{isShowing(true)}} /> : <AiOutlineEyeInvisible onClick={()=>{isShowing(false)}} />}
                     </div>
                     <span>Plants</span>
-                    <p>{plants?.length}</p>
+                    <p>{authUser.plants?.length}</p>
                 </div>
             </div>
         </div>

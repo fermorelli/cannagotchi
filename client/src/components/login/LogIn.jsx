@@ -22,11 +22,7 @@ export const LogIn = ()=>{
         login(email,password)
         .then(()=>{
             const auth = localStorage.getItem('auth');
-            console.log(auth);
-            auth === 'auth' ?
-                navigate('/')
-                :
-                console.log(auth)
+            const evalAuth = ()=>{
                 switch(auth){
                     case '"Firebase: Error (auth/wrong-password)."':
                         setErrmsg('Wrong password');
@@ -37,7 +33,13 @@ export const LogIn = ()=>{
                     default:
                         console.log('no coincide');
                 }
-                isFetching(false)
+            }
+            isFetching(false)
+            if(auth==='auth'){
+                navigate('/')
+            }else{
+                evalAuth();
+            }
         })
     }
 
