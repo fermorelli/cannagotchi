@@ -3,19 +3,20 @@ import './plants.css'
 
 export const Plants = ()=>{
 
-    const [ user, setUser ] = useState({});
+    const [ plants, setPlants ] = useState({});
 
-    const id = localStorage.getItem('id');
-
-    const getUser = async () => {
-        const response = await fetch(`http://localhost:8080/users/${id}`);
-        const data = await response.json();
-        setUser(data.data);
+    const getPlants = async () => {
+        const response = await fetch(`http://localhost:8080/plants`);
+        const data = await response.json()
+        console.log(data.data);
+        setPlants(data.data);
     }
 
-    useEffect(()=>{getUser()}, [])
+    useEffect(()=>{
+        getPlants()
+    }, [])
 
-    const plants = user.plants;
+
 
     return (
         <>
@@ -30,7 +31,7 @@ export const Plants = ()=>{
                         </div>
                         <div className="plant_attribute">
                             <h4>Family</h4>
-                            <span>{plant.plant_family}</span>
+                            <span>{plant.genetic}</span>
                         </div>
                         <div className="plant_attribute">
                             <h4>Germinated</h4>

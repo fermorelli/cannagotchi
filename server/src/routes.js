@@ -1,14 +1,15 @@
 import express from 'express';
-import Controllers from './controller.js';
+import usersControllers from './users/controller.js';
+import plantsControllers from './plants/controllers.js';
 
 const router = express.Router();
 
 router
-  .post('/', Controllers.createUser)
-  .post('/plants', Controllers.createPlant)
-  .get('/users', Controllers.getAllUsers)
-  .get('/users/:id', Controllers.getUserById)
-  .put('/:id', Controllers.updateUser)
-  .delete('/:id', Controllers.deleteUser);
+  .post('/', usersControllers.createUser)
+  .get('/users', usersControllers.getAllUsers)
+  .get('/plants', plantsControllers.getAllPlants)
+  .get('/users/:id', usersControllers.getUserById)
+  .put('/:id', usersControllers.updateUser)
+  .delete('/:id', usersControllers.deleteUser);
 
 export default router;
