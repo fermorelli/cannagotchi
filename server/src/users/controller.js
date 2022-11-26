@@ -54,9 +54,9 @@ const createUser = async (req, res) => {
     try {
         const user = new Users({
             firstName: req.body.firstName,
-            plant_family: req.body.plant_family,
-            germination_date: req.body.germination_date,
-            grow_mode: req.body.grow_mode,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            password: req.body.password,
         });
 
         const result = await user.save();
@@ -72,30 +72,6 @@ const createUser = async (req, res) => {
             error: true,
         })
     }
-}
-
-const createPlant = async (req, res) => {
-  try {
-      const plant = new Plants({
-          plant_name: req.body.plant_name,
-          plant_family: req.body.plant_family,
-          germination_date: req.body.germination_date,
-          grow_mode: req.body.grow_mode,
-      });
-
-      const result = await plant.save();
-      return res.status(201).json({
-          message: 'Plant successfully added',
-          data: result,
-          error: false,
-      });
-  } catch (error) {
-      return res.status(400).json({
-          message: 'Error when adding new plant',
-          data: {},
-          error: true,
-      })
-  }
 }
 
 const deleteUser = async (req, res) => {
@@ -127,36 +103,6 @@ const deleteUser = async (req, res) => {
       });
     }
   };
-
-  // const deletePlant = async (req, res) => {
-  //   try {
-  //     if (!req.params.id) {
-  //       return res.status(400).json({
-  //         message: 'Missing Id parameter',
-  //         data: undefined,
-  //         error: true,
-  //       });
-  //     }
-  //     const result = await Plants.findOneAndDelete()
-  //     if (!result) {
-  //       return res.status(404).json({
-  //         message: `User with ID ${req.params.id} has not been found`,
-  //         data: undefined,
-  //         error: true,
-  //       });
-  //     } return res.status(200).json({
-  //       message: 'User has been successfully deleted',
-  //       data: result,
-  //       error: false,
-  //     });
-  //   } catch (error) {
-  //     return res.status(400).json({
-  //       message: error,
-  //       data: undefined,
-  //       error: true,
-  //     });
-  //   }
-  // };
 
   const updateUser = async (req, res) => {
     try {
@@ -198,6 +144,5 @@ const deleteUser = async (req, res) => {
     getAllUsers,
     getUserById,
     updateUser,
-    deleteUser,
-    createPlant
+    deleteUser
   }

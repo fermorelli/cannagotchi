@@ -6,6 +6,7 @@ const router = express.Router();
 
 router
   .post('/', usersControllers.createUser)
+  .post('/', plantsControllers.createPlant)
   .get('/users', usersControllers.getAllUsers)
   .get('/plants', plantsControllers.getAllPlants)
   .get('/users/:id', usersControllers.getUserById)

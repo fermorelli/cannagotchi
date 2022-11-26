@@ -10,63 +10,45 @@ import { useEffect } from 'react';
 
 export const AddPlant = ()=> {
 
+    const [ userId, setUserId ] = useState('')
     const [ plantName, setPlantName ] = useState('');
     const [ genetic, setGenetic ] = useState('');
     const [ date, setDate ] = useState('');
     const [ growMode, setGrowMode ] = useState('');
+    const [ auto, setAuto ] = useState(false);
     const [ isOpen, setIsOpen ] = useState(false);
     const [ success, isSuccess ] = useState(false);
     const [ plants, setPlants ] = useState([]);
-    const [refresh, setRefresh] = useState('');
 
-    const id = localStorage.getItem('id');
-
-    useEffect(()=>{
-        fetch(`http://localhost:8080/users/${id}`)
-        .then((response) => response.json())
-        .then((response) => {
-        console.log('data: ', response.data)
-        setPlants(response.data.plants);
-        console.log('plants before: ', plants);
-      });
-    },[refresh])
-
-    const addPlant = async (plant)=>{
-
-        const res = await fetch('http://localhost:8080/plants', {
-                method: 'POST',
-                headers: {'Content-type': 'application/json'},
-                body: JSON.stringify(plant)
-            });
-        const data = await res.json();
-
-        setPlants([...plants, data]);
-
-        console.log('plants after: ', plants)
-
-        if(data.error===false){
-            setRefresh('');
-            isSuccess(true)
-            setIsOpen(true)
-        }else if (data.error===true){
-            console.log(data.error.message);
-            isSuccess(false);
-        }
-    }
-
-    const onSubmit = (e) => {
+    const addPlant = (e)=>{
         e.preventDefault();
-        addPlant({
-          plantName,
-          genetic,
-          date,
-          growMode
-        });
-        setPlantName('');
-        setGenetic('');
-        setDate('');
-        setGrowMode('');
-      };
+
+        setUserId(localStorage.getItem('authUserId'));
+
+        fetch('http://localhost:8080', {
+            method: 'POST',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({
+                user_id: userId,
+                plant_name: plantName,
+                genetic: genetic,
+                grow_mode: growMode,
+                auto: auto,
+                germination_date: date
+            })})
+
+            .then((response) => response.json())
+            .then((data) => {
+                if(data.error===false){
+                    isSuccess(true)
+                    setIsOpen(true)
+                }
+            })
+            .catch((err) => {
+                console.log(err.message);
+                isSuccess(false);
+            });
+    }
 
     const handleClose = ()=>{
         setIsOpen(false);
@@ -74,6 +56,8 @@ export const AddPlant = ()=> {
         setGenetic('');
         setDate('');
         setGrowMode('');
+        setAuto(false);
+        setUserId('');
     }
 
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -96,24 +80,33 @@ export const AddPlant = ()=> {
                 </div>
             </Modal>}
             <div className="title">
-                <h2>Add a new user</h2>
+                <h2>Add a new plant</h2>
             </div>
             <div className="form">
-                <form action="" onSubmit={handleSubmit(onSubmit)}>
-                    <label htmlFor="">First Name</label>
+                <form action="" onSubmit={handleSubmit(addPlant)}>
+                    <label htmlFor="">Plant Name</label>
                     <input type="text" {...register('plantName')} name="plantName" error={appendErrors.plantName?.message} value={plantName} onChange={(e)=>{setPlantName(e.target.value)}}/>
                         {errors.plantName && <span>{errors.plantName?.message}</span>}
-                    <label htmlFor="">Last Name</label>
-                    <input type="text" {...register('genetic')} name="genetic" error={appendErrors.genetic?.message} value={genetic} onChange={(e)=>{setGenetic(e.target.value)}}/>
-                        {errors.genetic && <span>{errors.genetic?.message}</span>}
-                    <label htmlFor="">date</label>
-                    <input type="mail" {...register('date')} name="date" error={appendErrors.date?.message} value={date} onChange={(e)=>{setDate(e.target.value)}} />
-                        {errors.date && <span>{errors.date?.message}</span>}
-                    <label htmlFor="">growMode</label>
-                    <input type="growMode" {...register('growMode')} error={appendErrors.growMode?.message} value={growMode} onChange={(e)=>{setGrowMode(e.target.value)}}/>
-                        {errors.growMode && <span>{errors.growMode?.message}</span>}
+                    <label htmlFor="">Genetic Family</label>
+                    <select name="genetic" {...register('genetic')} error={appendErrors.genetic?.message} value={genetic} onChange={(e)=>{setGenetic(e.target.value)}}>
+                        <option value="">Indica</option>
+                        <option value="">Indica-dominating breed</option>
+                        <option value="">Sativa</option>
+                        <option value="">Sativa-dominating breed</option>
+                    </select>
+                    <label htmlFor="">Grow mode</label>
+                    <select name="genetic" {...register('growMode')} error={appendErrors.growMode?.message} value={growMode} onChange={(e)=>{setGrowMode(e.target.value)}}>
+                        <option value="">Exterior</option>
+                        <option value="">Interior</option>
+                    </select>
+                    <label htmlFor="">Germination date</label>
+                    <input type="date" {...register('date')} name="date" error={appendErrors.date?.message} value={date} onChange={(e)=>{setDate(e.target.value)}}/>
+                    <div className='auto'>
+                        <label htmlFor="">Auto</label>
+                        <input type="checkbox" {...register('auto')} name="auto" error={appendErrors.auto?.message} value={auto} onChange={(e)=>{setAuto(e.target.value)}}/>
+                    </div>
                     <div className='formButtons'>
-                        <button action="submit" type="submit" onClick={onSubmit}>Add</button>
+                        <button action="submit" type="submit" onClick={addPlant}>Add</button>
                         <Link to={'/'}>
                             <button>Go back</button>
                         </Link>

@@ -24,12 +24,11 @@ export const AuthProvider = ({children})=>{
             localStorage.setItem('user', JSON.stringify(currentUser));
         })
         const userMatch = ()=>{
-            const finding = usuario => usuario?.email === user?.email
+            const finding = usuario => usuario.email === user?.email
             setAuthUser(users.find(finding));
-            console.log(authUser)
+            localStorage.setItem('authUserId', authUser._id);
         }
         userMatch();
-        ;
     },[user])
 
     const getUsers = async () => {
@@ -68,6 +67,7 @@ export const AuthProvider = ({children})=>{
 
     const logout = ()=> {
         signOut(auth);
+        setAuthUser({});
         localStorage.clear();
     }
 

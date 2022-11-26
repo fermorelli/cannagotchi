@@ -19,20 +19,13 @@ export const schema = Joi.object({
         'string.empty': 'This field is required',
         'string.pattern.base': 'Not a valid name'
     }),
+    growMode: Joi.string()
+    .required(),
     date: Joi.date()
     .required()
     .messages({
         'date.empty': 'This field is required',
     }),
-    growMode: Joi.string()
-    .min(3)
-    .max(10)
-    .pattern(new RegExp(/^[A-Za-z]+$/))
+    auto: Joi.boolean()
     .required()
-    .messages({
-        'string.min': 'Password must contain at least 8 digits',
-        'string.max': `Password can't contain more than 10 digits`,
-        'string.pattern.base': 'Password should contain at least 1 number and at least 1 letter',
-        'string.empty': 'This field is required'
-    })
 })
