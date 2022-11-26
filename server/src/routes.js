@@ -5,8 +5,8 @@ import plantsControllers from './plants/controllers.js';
 const router = express.Router();
 
 router
-  .post('/', usersControllers.createUser)
-  .post('/', plantsControllers.createPlant)
+  .post('/users', usersControllers.createUser)
+  .post('/plants', plantsControllers.createPlant)
   .get('/users', usersControllers.getAllUsers)
   .get('/plants', plantsControllers.getAllPlants)
   .get('/users/:id', usersControllers.getUserById)

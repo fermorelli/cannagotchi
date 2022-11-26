@@ -25,7 +25,7 @@ export const AddPlant = ()=> {
 
         setUserId(localStorage.getItem('authUserId'));
 
-        fetch('http://localhost:8080', {
+        fetch('http://localhost:8080/plants', {
             method: 'POST',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({

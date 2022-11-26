@@ -20,7 +20,7 @@ export const AddUser = ()=> {
     const addUser = (e)=>{
         e.preventDefault();
 
-        fetch('http://localhost:8080', {
+        fetch('http://localhost:8080/users', {
             method: 'POST',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
