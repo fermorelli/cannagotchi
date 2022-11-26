@@ -26,7 +26,7 @@ export const AuthProvider = ({children})=>{
         const userMatch = ()=>{
             const finding = usuario => usuario.email === user?.email
             setAuthUser(users.find(finding));
-            localStorage.setItem('authUserId', authUser._id);
+            localStorage.setItem('authUserId', authUser?._id);
         }
         userMatch();
     },[user])

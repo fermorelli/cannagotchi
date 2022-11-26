@@ -36,7 +36,6 @@ export const AddPlant = ()=> {
                 auto: auto,
                 germination_date: date
             })})
-
             .then((response) => response.json())
             .then((data) => {
                 if(data.error===false){
@@ -89,15 +88,15 @@ export const AddPlant = ()=> {
                         {errors.plantName && <span>{errors.plantName?.message}</span>}
                     <label htmlFor="">Genetic Family</label>
                     <select name="genetic" {...register('genetic')} error={appendErrors.genetic?.message} value={genetic} onChange={(e)=>{setGenetic(e.target.value)}}>
-                        <option value="">Indica</option>
-                        <option value="">Indica-dominating breed</option>
-                        <option value="">Sativa</option>
-                        <option value="">Sativa-dominating breed</option>
+                        <option value="Indica">Indica</option>
+                        <option value="Indica-dominating breed">Indica-dominating breed</option>
+                        <option value="Sativa">Sativa</option>
+                        <option value="Sativa-dominating breed">Sativa-dominating breed</option>
                     </select>
                     <label htmlFor="">Grow mode</label>
                     <select name="genetic" {...register('growMode')} error={appendErrors.growMode?.message} value={growMode} onChange={(e)=>{setGrowMode(e.target.value)}}>
-                        <option value="">Exterior</option>
-                        <option value="">Interior</option>
+                        <option value="Exterior">Exterior</option>
+                        <option value="Interior">Interior</option>
                     </select>
                     <label htmlFor="">Germination date</label>
                     <input type="date" {...register('date')} name="date" error={appendErrors.date?.message} value={date} onChange={(e)=>{setDate(e.target.value)}}/>

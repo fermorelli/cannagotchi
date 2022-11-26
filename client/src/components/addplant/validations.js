@@ -12,15 +12,13 @@ export const schema = Joi.object({
     }),
     genetic: Joi.string()
     .min(3)
-    .required()
     .pattern(new RegExp(/^[A-Za-z]+$/))
     .messages({
         'string.min': 'Last name must contain at least 3 letters',
         'string.empty': 'This field is required',
         'string.pattern.base': 'Not a valid name'
     }),
-    growMode: Joi.string()
-    .required(),
+    growMode: Joi.string(),
     date: Joi.date()
     .required()
     .messages({
