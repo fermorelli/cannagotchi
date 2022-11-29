@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../firebase/firebase';
+import { useParams } from 'react-router-dom';
 
 const authContext = createContext();
 
@@ -16,6 +17,8 @@ export const AuthProvider = ({children})=>{
     const [ plants, setPlants ] = useState([]);
     const [ authUser, setAuthUser ] = useState({});
 
+    const params = useParams();
+
     useEffect(()=>{
         getUsers();
         getPlants();
@@ -23,12 +26,17 @@ export const AuthProvider = ({children})=>{
             setUser(currentUser);
             localStorage.setItem('user', JSON.stringify(currentUser));
         })
-        const userMatch = ()=>{
-            const finding = usuario => usuario.email === user?.email
-            setAuthUser(users.find(finding));
-            localStorage.setItem('authUserId', authUser?._id);
+        const userMatch = async () =>{
+            try{
+                const finding = usuario => usuario.email === user?.email
+                setAuthUser(users.find(finding));
+                localStorage.setItem('authUserId', authUser?._id);
+            }catch(e){
+                console.log(e.message)
+            }
         }
         userMatch();
+        console.log(plants)
     },[user])
 
     const getUsers = async () => {

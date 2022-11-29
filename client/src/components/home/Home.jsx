@@ -15,7 +15,7 @@ export const Home = ()=>{
 
     useEffect(()=>{
         plants && setMyPlants(plants.filter(plant => plant.user_id === authUser?._id))
-    }, [])
+    }, [plants])
 
     return (
         <>

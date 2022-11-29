@@ -10,7 +10,10 @@ router
   .get('/users', usersControllers.getAllUsers)
   .get('/plants', plantsControllers.getAllPlants)
   .get('/users/:id', usersControllers.getUserById)
-  .put('/:id', usersControllers.updateUser)
-  .delete('/:id', usersControllers.deleteUser);
+  .get('/plants/:id', plantsControllers.getPlantById)
+  .put('/users/:id', usersControllers.updateUser)
+  .put('/plants/:id', plantsControllers.updatePlant)
+  .delete('/users/:id', usersControllers.deleteUser)
+  .delete('/plants/:id', plantsControllers.deletePlant)
 
 export default router;

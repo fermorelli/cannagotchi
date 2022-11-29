@@ -6,7 +6,7 @@ export const schema = Joi.object({
     .required()
     .pattern(new RegExp(/^[A-Za-z]+$/))
     .messages({
-        'string.min': 'First name must contain at least 3 letters',
+        'string.min': 'Plant name must contain at least 3 letters',
         'string.empty': 'This field is required',
         'string.pattern.base': 'Not a valid name'
     }),
@@ -14,11 +14,15 @@ export const schema = Joi.object({
     .min(3)
     .pattern(new RegExp(/^[A-Za-z]+$/))
     .messages({
-        'string.min': 'Last name must contain at least 3 letters',
+        'string.min': 'Genetics must contain at least 3 letters',
         'string.empty': 'This field is required',
         'string.pattern.base': 'Not a valid name'
     }),
-    growMode: Joi.string(),
+    growMode: Joi.string()
+    .required()
+    .messages({
+        'string.empty': 'This field is required'
+    }),
     date: Joi.date()
     .required()
     .messages({

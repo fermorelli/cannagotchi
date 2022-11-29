@@ -5,7 +5,7 @@ import '../adduser/adduser.css'
 import { appendErrors, useForm } from 'react-hook-form';
 import { schema } from './validations';
 import { joiResolver } from '@hookform/resolvers/joi';
-import { useEffect } from 'react';
+import { useAuth } from '../../context/authContext';
 
 
 export const AddPlant = ()=> {
@@ -18,12 +18,13 @@ export const AddPlant = ()=> {
     const [ auto, setAuto ] = useState(false);
     const [ isOpen, setIsOpen ] = useState(false);
     const [ success, isSuccess ] = useState(false);
-    const [ plants, setPlants ] = useState([]);
 
     const addPlant = (e)=>{
         e.preventDefault();
 
         setUserId(localStorage.getItem('authUserId'));
+
+        console.log('user id: ', userId);
 
         fetch('http://localhost:8080/plants', {
             method: 'POST',
@@ -41,6 +42,7 @@ export const AddPlant = ()=> {
                 if(data.error===false){
                     isSuccess(true)
                     setIsOpen(true)
+                    localStorage.setItem('added', 'added')
                 }
             })
             .catch((err) => {
@@ -68,13 +70,13 @@ export const AddPlant = ()=> {
         <div className="all">
             {isOpen &&
             <Modal setIsOpen={setIsOpen} modalTitle={success===true? "Success" : "Something went wrong"}>
-                <p>{success ? "User successfully added" : null}</p>
+                <p>{success ? "Plant successfully added" : null}</p>
                 <div className='addModalButtons'>
                     <Link to={'/'}>
                         <button onClick={handleClose}>Go back</button>
                     </Link>
                     <Link to={'/add-user'}>
-                        <span onClick={handleClose}>Add another user</span>
+                        <span onClick={handleClose}>Add another plant</span>
                     </Link>
                 </div>
             </Modal>}
@@ -88,6 +90,7 @@ export const AddPlant = ()=> {
                         {errors.plantName && <span>{errors.plantName?.message}</span>}
                     <label htmlFor="">Genetic Family</label>
                     <select name="genetic" {...register('genetic')} error={appendErrors.genetic?.message} value={genetic} onChange={(e)=>{setGenetic(e.target.value)}}>
+                        <option value="" selected disabled hidden>Choose a breed</option>
                         <option value="Indica">Indica</option>
                         <option value="Indica-dominating breed">Indica-dominating breed</option>
                         <option value="Sativa">Sativa</option>
@@ -95,6 +98,7 @@ export const AddPlant = ()=> {
                     </select>
                     <label htmlFor="">Grow mode</label>
                     <select name="genetic" {...register('growMode')} error={appendErrors.growMode?.message} value={growMode} onChange={(e)=>{setGrowMode(e.target.value)}}>
+                        <option value="" selected disabled hidden>Choose the grow mode</option>
                         <option value="Exterior">Exterior</option>
                         <option value="Interior">Interior</option>
                     </select>
