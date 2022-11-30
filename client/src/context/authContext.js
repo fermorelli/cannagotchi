@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../firebase/firebase';
-import { useParams } from 'react-router-dom';
 
 const authContext = createContext();
 
@@ -16,8 +15,9 @@ export const AuthProvider = ({children})=>{
     const [ users, setUsers ] = useState([]);
     const [ plants, setPlants ] = useState([]);
     const [ authUser, setAuthUser ] = useState({});
+    const [ change, setChange ] = useState(false)
 
-    const params = useParams();
+    localStorage.getItem('change') === 1 && setChange(true)
 
     useEffect(()=>{
         getUsers();
@@ -37,7 +37,7 @@ export const AuthProvider = ({children})=>{
         }
         userMatch();
         console.log(plants)
-    },[user])
+    },[user, change])
 
     const getUsers = async () => {
         const response = await fetch('http://localhost:8080/users');

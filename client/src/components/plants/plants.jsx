@@ -29,6 +29,7 @@ export const Plants = ()=>{
                     }
             }).catch((e)=>console.log(e))
             setConfirm(true);
+            localStorage.setItem('change', 1)
     }
 
     const handleClose = ()=>{
@@ -61,8 +62,7 @@ export const Plants = ()=>{
             </Modal>}
         <h1 id="title">My plants</h1>
         <div className="editButtons">
-            <button onClick={()=>setShow(true)} className={!show ? "" : "disabled" }>Edit plants</button>
-            <button onClick={()=>setShow(false)} className={show ? "" : "disabled" }>Done</button>
+            <button onClick={()=>setShow(!show)}>{show ? 'Done' : 'Edit plants'}</button>
         </div>
         <div className="all_plants">
             {myPlants.map((plant)=>{
@@ -70,7 +70,7 @@ export const Plants = ()=>{
                 const dateString = date.toLocaleDateString('en-GB');
                 return(
                     <div className="plant_card">
-                        <div className={show ? "headersButtons" : "disabled" }>
+                        <div className={show ? "plantHeadersButtons" : "disabled" }>
                             <Link to={`/edit-plant/${plant._id}`}>
                                 <BsFillPencilFill className="icon" />
                             </Link>

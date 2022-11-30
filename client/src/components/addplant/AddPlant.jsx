@@ -5,8 +5,6 @@ import '../adduser/adduser.css'
 import { appendErrors, useForm } from 'react-hook-form';
 import { schema } from './validations';
 import { joiResolver } from '@hookform/resolvers/joi';
-import { useAuth } from '../../context/authContext';
-
 
 export const AddPlant = ()=> {
 
@@ -42,7 +40,7 @@ export const AddPlant = ()=> {
                 if(data.error===false){
                     isSuccess(true)
                     setIsOpen(true)
-                    localStorage.setItem('added', 'added')
+                    localStorage.setItem('change', 1)
                 }
             })
             .catch((err) => {

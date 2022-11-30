@@ -3,9 +3,8 @@
 }
 
 .all_plants {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
     gap: 2rem;
     margin: 1rem 0 0 1rem;
  }
@@ -25,4 +24,17 @@
 
  .plant_attribute span {
     font-style: italic;
+ }
+
+ .plantHeadersButtons {
+    display: flex;
+    justify-content: flex-end;
+ }
+
+ .plantHeadersButtons a {
+    margin-top: -3px;
+ }
+
+ .disabled { 
+    display: none;
  }
