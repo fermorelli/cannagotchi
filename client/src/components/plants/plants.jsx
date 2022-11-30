@@ -17,7 +17,11 @@ export const Plants = ()=>{
     const [ plantName, setPlantName ] = useState('');
     const [ ID, setID ] = useState('');
 
-    const { plants,authUser } = useAuth();
+    const { plants, authUser, isDeleted } = useAuth();
+
+    useEffect(()=>{
+        plants && setMyPlants(plants.filter(plant => plant.user_id === authUser?._id))
+    }, [])
 
     const deletePlant = (id)=>{
         fetch(`http://localhost:8080/plants/${id}`, {method: 'DELETE'})
@@ -25,7 +29,8 @@ export const Plants = ()=>{
                     if(!response.ok){
                         throw new Error('Something went wrong')
                     }else{
-                        setMyPlants(plants.filter(item=>item._id !== id))
+                        setMyPlants(myPlants.filter(item=>item._id !== id))
+                        isDeleted(true);
                     }
             }).catch((e)=>console.log(e))
             setConfirm(true);
@@ -42,11 +47,6 @@ export const Plants = ()=>{
         setID(id);
         setPlantName(plant_name);
     }
-
-    useEffect(()=>{
-        plants && setMyPlants(plants.filter(plant => plant.user_id === authUser?._id))
-        console.log(myPlants)
-    }, [])
 
     return (
         <>
