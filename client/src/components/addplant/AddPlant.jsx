@@ -5,10 +5,10 @@ import '../adduser/adduser.css'
 import { appendErrors, useForm } from 'react-hook-form';
 import { schema } from './validations';
 import { joiResolver } from '@hookform/resolvers/joi';
+import { useAuth } from '../../context/authContext';
 
-export const AddPlant = ()=> {
+export const AddPlant = ({props})=> {
 
-    const [ userId, setUserId ] = useState('')
     const [ plantName, setPlantName ] = useState('');
     const [ genetic, setGenetic ] = useState('');
     const [ date, setDate ] = useState('');
@@ -17,18 +17,15 @@ export const AddPlant = ()=> {
     const [ isOpen, setIsOpen ] = useState(false);
     const [ success, isSuccess ] = useState(false);
 
+    const { authUser, setChange } = useAuth();
+
     const addPlant = (e)=>{
         e.preventDefault();
-
-        setUserId(localStorage.getItem('authUserId'));
-
-        console.log('user id: ', userId);
-
         fetch('http://localhost:8080/plants', {
             method: 'POST',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
-                user_id: userId,
+                user_id: authUser._id,
                 plant_name: plantName,
                 genetic: genetic,
                 grow_mode: growMode,
@@ -40,7 +37,7 @@ export const AddPlant = ()=> {
                 if(data.error===false){
                     isSuccess(true)
                     setIsOpen(true)
-                    localStorage.setItem('change', 1)
+                    setChange(true);
                 }
             })
             .catch((err) => {
@@ -56,7 +53,6 @@ export const AddPlant = ()=> {
         setDate('');
         setGrowMode('');
         setAuto(false);
-        setUserId('');
     }
 
     const { register, handleSubmit, formState: { errors } } = useForm({

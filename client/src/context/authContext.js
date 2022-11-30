@@ -15,9 +15,19 @@ export const AuthProvider = ({children})=>{
     const [ users, setUsers ] = useState([]);
     const [ plants, setPlants ] = useState([]);
     const [ authUser, setAuthUser ] = useState({});
-    const [ change, setChange ] = useState(false)
+    const [ change, setChange ] = useState(false);
 
-    localStorage.getItem('change') === 1 && setChange(true)
+    const getUsers = async () => {
+        const response = await fetch('http://localhost:8080/users');
+        const data = await response.json();
+        setUsers(data.data)
+    };
+
+    const getPlants = () => {
+        fetch(`http://localhost:8080/plants`)
+        .then(response=> response.json())
+        .then(data => setPlants(data.data))
+    };
 
     useEffect(()=>{
         getUsers();
@@ -30,7 +40,6 @@ export const AuthProvider = ({children})=>{
             try{
                 const finding = usuario => usuario.email === user?.email
                 setAuthUser(users.find(finding));
-                localStorage.setItem('authUserId', authUser?._id);
             }catch(e){
                 console.log(e.message)
             }
@@ -38,18 +47,6 @@ export const AuthProvider = ({children})=>{
         userMatch();
         console.log(plants)
     },[user, change])
-
-    const getUsers = async () => {
-        const response = await fetch('http://localhost:8080/users');
-        const data = await response.json();
-        setUsers(data.data)
-    }
-
-    const getPlants = () => {
-        fetch(`http://localhost:8080/plants`)
-        .then(response=> response.json())
-        .then(data => setPlants(data.data))
-    }
 
     const regNew = async (email, password) => {
         try{
@@ -80,7 +77,7 @@ export const AuthProvider = ({children})=>{
     }
 
     return(
-        <authContext.Provider value={{regNew, login, logout, user, users, authUser, plants}}>
+        <authContext.Provider value={{regNew, login, logout, user, users, authUser, plants, setChange}}>
             {children}
         </authContext.Provider>
     )
