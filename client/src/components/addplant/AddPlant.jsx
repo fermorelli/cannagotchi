@@ -17,7 +17,7 @@ export const AddPlant = ({props})=> {
     const [ isOpen, setIsOpen ] = useState(false);
     const [ success, isSuccess ] = useState(false);
 
-    const { authUser, setChange } = useAuth();
+    const { authUser, setChange, change } = useAuth();
 
     const addPlant = (e)=>{
         e.preventDefault();
@@ -37,7 +37,7 @@ export const AddPlant = ({props})=> {
                 if(data.error===false){
                     isSuccess(true)
                     setIsOpen(true)
-                    setChange(true);
+                    setChange(true)
                 }
             })
             .catch((err) => {
@@ -53,6 +53,7 @@ export const AddPlant = ({props})=> {
         setDate('');
         setGrowMode('');
         setAuto(false);
+        setChange(false);
     }
 
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -66,7 +67,7 @@ export const AddPlant = ({props})=> {
             <Modal setIsOpen={setIsOpen} modalTitle={success===true? "Success" : "Something went wrong"}>
                 <p>{success ? "Plant successfully added" : null}</p>
                 <div className='addModalButtons'>
-                    <Link to={'/'}>
+                    <Link to={'/plants'}>
                         <button onClick={handleClose}>Go back</button>
                     </Link>
                     <Link to={'/add-user'}>

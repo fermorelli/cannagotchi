@@ -40,6 +40,7 @@ export const Plants = ()=>{
     const handleClose = ()=>{
         setIsOpen(false);
         setConfirm(false)
+        isDeleted(false);
     }
 
     const handleChange = (id, plant_name)=>{
