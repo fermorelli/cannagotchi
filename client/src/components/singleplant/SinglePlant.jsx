@@ -1,23 +1,25 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { BsFillPencilFill } from 'react-icons/bs';
 import { GoTrashcan } from 'react-icons/go'
 import Modal from "../modal/modal";
+import './singleplant.css';
 
 export const SinglePlant = () => {
     const [ plant, setPlant ] = useState({});
-    const [ show, setShow ] = useState(false);
     const [ isOpen, setIsOpen ] = useState(false);
     const [ confirm, setConfirm ] = useState(false);
     const [ plantName, setPlantName ] = useState('');
     const [ ID, setID ] = useState('');
 
 
-    const { plants, authUser, isDeleted } = useAuth();
+    const { isDeleted } = useAuth();
 
     const params = useParams();
     const id = params.id;
+
+    const navigate = useNavigate();
 
     const getPlant = () => {
         fetch(`http://localhost:8080/plants/${id}`)
@@ -71,24 +73,22 @@ export const SinglePlant = () => {
                 </div>
             </Modal>}
         <div className="all">
-            <div className="editButtons">
-                <button onClick={()=>setShow(!show)}>{show ? 'Done' : 'Edit plants'}</button>
-            </div>
-            <div className="plant_card">
-                <div className={show ? "plantHeadersButtons" : "disabled" }>
-                    <Link to={`/edit-plant/${plant._id}`}>
-                      <BsFillPencilFill className="icon" />
-                    </Link>
-                    <GoTrashcan className="icon" onClick={()=>{
-                                    handleChange(plant._id, plant.plant_name)}}/>
+            <div className="card">
+                <div className="card_header">
+                    <h2>{plant.plant_name}</h2>
+                    <div className="plantHeadersButtons">
+                        <Link to={`/edit-plant/${plant._id}`}>
+                            <BsFillPencilFill className="icon" />
+                        </Link>
+                        <GoTrashcan className="icon" onClick={()=>{handleChange(plant._id, plant.plant_name)}}/>
+                    </div>
                 </div>
-                <h2>{plant.plant_name}</h2>
                 <span>{plant.genetic}</span>
                 <span>{dateString}</span>
                 <span>{plant.grow_mode}</span>
             </div>
+            <button className='button' onClick={()=>navigate(-1)}>Go back</button>
         </div>
-
         </>
     )
 };

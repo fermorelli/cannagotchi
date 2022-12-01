@@ -12,6 +12,7 @@ export const schema = Joi.object({
     }),
     genetic: Joi.string()
     .min(3)
+    .required()
     .pattern(new RegExp(/^[A-Za-z]+$/))
     .messages({
         'string.min': 'Genetics must contain at least 3 letters',

@@ -1,0 +1,25 @@
+.button{
+    background: var(--color-bg-variant);
+	color: white;
+    padding: 3px 10px;
+    border-radius: 5px;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    margin-top: 20px;
+    transform: scale(0.9);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: rgba(50, 50, 50, 0.4);
+    border-radius: 10px;
+}
+
+.card_header {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}

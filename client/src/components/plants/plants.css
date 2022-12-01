@@ -17,6 +17,11 @@
      border-radius: 10px;
  }
 
+ .plant_card:hover {
+   transform: scale(1.05);
+   background-color: rgba(58, 57, 88, 0.4);
+ }
+
  .plant_attribute {
      display: flex;
      justify-content: space-between;

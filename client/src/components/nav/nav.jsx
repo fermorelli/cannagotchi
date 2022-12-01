@@ -34,7 +34,7 @@ export const Nav = ()=>{
                     </div>
                 </Modal>}
             <div className="links">
-                <Link to={'/'}><span>Crud MERN Stack</span></Link>
+                <Link to={'/'}><span>Cannagotchi</span></Link>
                 {user ?
                     <>
                         <Link to={'/'}>Home</Link>

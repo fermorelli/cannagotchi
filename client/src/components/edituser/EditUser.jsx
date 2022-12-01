@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Modal from '../modal/modal';
-import { Link, useParams, useNavigate  } from 'react-router-dom';
+import { useParams, useNavigate  } from 'react-router-dom';
 import './editUser.css'
 import { useEffect } from 'react';
 
@@ -16,6 +16,7 @@ export const EditUser = ()=> {
 
     const params = useParams();
     const id = params.id;
+
     localStorage.setItem('id', id);
 
     const navigate = useNavigate();
@@ -42,7 +43,7 @@ export const EditUser = ()=> {
     const editUser = (e) =>{
         e.preventDefault();
 
-        fetch(`http://localhost:8080/${id}`, {
+        fetch(`http://localhost:8080/users/${id}`, {
             method: 'PUT',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({

@@ -16,6 +16,7 @@ export const AuthProvider = ({children})=>{
     const [ plants, setPlants ] = useState([]);
     const [ authUser, setAuthUser ] = useState({});
     const [ change, setChange ] = useState(false);
+    const [ edit, setEdit ] = useState(false);
     const [ deleted, isDeleted ] = useState(false);
 
     const getUsers = async () => {
@@ -47,7 +48,7 @@ export const AuthProvider = ({children})=>{
         }
         userMatch();
         console.log(plants)
-    },[user, change, deleted])
+    },[user, change, deleted, edit])
 
     const regNew = async (email, password) => {
         try{
@@ -78,7 +79,7 @@ export const AuthProvider = ({children})=>{
     }
 
     return(
-        <authContext.Provider value={{regNew, login, logout, user, users, authUser, plants, setChange, isDeleted}}>
+        <authContext.Provider value={{regNew, login, logout, user, users, authUser, plants, setChange, isDeleted, setEdit}}>
             {children}
         </authContext.Provider>
     )
