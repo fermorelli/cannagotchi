@@ -8,8 +8,6 @@ import './plants.css'
 
 export const Plants = ()=>{
 
-    //HACER FETCHS LOCALES EN TODOS LOS COMPONENETES O BUSCAR UNA FORMA DE ACTUALIZAR EL USEEFFECT DE USEAUTH PARA QUE SE ACTUALICEN LAS COLECCIONES UNA VEZ AGREGADOS EDITADOS O BORRADOS ALGUNOS ELEMENTOS
-
     const [ myPlants, setMyPlants ] = useState([]);
     const [ show, setShow ] = useState(false);
     const [ isOpen, setIsOpen ] = useState(false);
@@ -70,31 +68,33 @@ export const Plants = ()=>{
                 const date = new Date(plant.germination_date);
                 const dateString = date.toLocaleDateString('en-GB');
                 return(
-                    <div className="plant_card">
-                        <div className={show ? "plantHeadersButtons" : "disabled" }>
-                            <Link to={`/edit-plant/${plant._id}`}>
-                                <BsFillPencilFill className="icon" />
-                            </Link>
-                            <GoTrashcan className="icon" onClick={()=>{
-                                handleChange(plant._id, plant.plant_name)}}/>
+                    <Link to={`/plants/${plant._id}`}>
+                        <div className="plant_card">
+                            <div className={show ? "plantHeadersButtons" : "disabled" }>
+                                <Link to={`/edit-plant/${plant._id}`}>
+                                    <BsFillPencilFill className="icon" />
+                                </Link>
+                                <GoTrashcan className="icon" onClick={()=>{
+                                    handleChange(plant._id, plant.plant_name)}}/>
+                            </div>
+                            <div className="plant_attribute">
+                                <h4>Genetic</h4>
+                                <span>{plant.plant_name}</span>
+                            </div>
+                            <div className="plant_attribute">
+                                <h4>Family</h4>
+                                <span>{plant.genetic}</span>
+                            </div>
+                            <div className="plant_attribute">
+                                <h4>Germinated</h4>
+                                <span>{dateString}</span>
+                            </div>
+                            <div className="plant_attribute">
+                                <h4>Grow mode</h4>
+                                <span>{plant.grow_mode}</span>
+                            </div>
                         </div>
-                        <div className="plant_attribute">
-                            <h4>Genetic</h4>
-                            <span>{plant.plant_name}</span>
-                        </div>
-                        <div className="plant_attribute">
-                            <h4>Family</h4>
-                            <span>{plant.genetic}</span>
-                        </div>
-                        <div className="plant_attribute">
-                            <h4>Germinated</h4>
-                            <span>{dateString}</span>
-                        </div>
-                        <div className="plant_attribute">
-                            <h4>Grow mode</h4>
-                            <span>{plant.grow_mode}</span>
-                        </div>
-                    </div>
+                    </Link>
                 )
             })}
         </div>
