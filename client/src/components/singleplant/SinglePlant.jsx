@@ -13,7 +13,6 @@ export const SinglePlant = () => {
     const [ plantName, setPlantName ] = useState('');
     const [ ID, setID ] = useState('');
 
-
     const { isDeleted } = useAuth();
 
     const params = useParams();

@@ -4,6 +4,7 @@ import { useAuth } from '../../context/authContext'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Modal from '../modal/modal'
+import { GiChestnutLeaf } from 'react-icons/gi'
 
 export const Nav = ()=>{
     const [ isOpen, setIsOpen ] = useState(false);
@@ -34,14 +35,16 @@ export const Nav = ()=>{
                     </div>
                 </Modal>}
             <div className="links">
-                <Link to={'/'}><span>Cannagotchi</span></Link>
+                <Link to={'/'} className='logo'>
+                    <GiChestnutLeaf />
+                    <span>Cannagotchi</span>
+                </Link>
                 {user ?
                     <>
                         <Link to={'/'}>Home</Link>
-                        <Link to={'/users'}>Users</Link>
-                        <Link to={'/add-user'}>Add User</Link>
+                        {/* <Link to={'/users'}>Users</Link>
+                        <Link to={'/add-user'}>Add User</Link> */}
                         <Link to={'/plants'}>My Plants</Link>
-                        <Link to={'/add-plant'}>Add Plant</Link>
                         <span onClick={()=>{setIsOpen(true)}} id='logout'>Log out</span>
                     </>
                 :

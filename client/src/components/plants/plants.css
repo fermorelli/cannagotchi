@@ -9,6 +9,12 @@
     margin: 1rem 0 0 1rem;
  }
 
+ .header a{
+   transform: scale(2);
+   margin-top: 25px;
+   margin-left: 25px;
+ }
+
  .plant_card {
      display: flex;
      flex-direction: column;

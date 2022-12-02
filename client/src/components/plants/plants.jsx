@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/authContext";
+import { AiFillPlusCircle } from 'react-icons/ai'
 // import { BsFillPencilFill } from 'react-icons/bs';
 // import { GoTrashcan } from 'react-icons/go'
 import { Link } from "react-router-dom";
@@ -59,7 +60,12 @@ export const Plants = ()=>{
                     </Link>
                 </div>
             </Modal>} */}
-        <h1 id="title">My plants</h1>
+        <div className="header">
+            <h1 id="title">My plants</h1>
+            <Link to={'/add-plant'}>
+                <AiFillPlusCircle/>
+            </Link>
+        </div>
         {/* <div className="editButtons">
             <button onClick={()=>setShow(!show)}>{show ? 'Done' : 'Edit plants'}</button>
         </div> */}

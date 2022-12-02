@@ -29,7 +29,6 @@ function App() {
               <Route path='/plants/:id' element={<SinglePlant />} exact></Route>
               <Route path='/add-plant' element={<AddPlant />} exact></Route>
               <Route path='/edit-plant/:id' element={<EditPlant />} exact></Route>
-
             </Routes>
           </Router>
       </AuthProvider>

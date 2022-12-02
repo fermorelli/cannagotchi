@@ -105,7 +105,7 @@ export const AddPlant = ({props})=> {
                     </div>
                     <div className='formButtons'>
                         <button action="submit" type="submit" onClick={addPlant}>Add</button>
-                        <Link to={'/'}>
+                        <Link to={'/plants'}>
                             <button>Go back</button>
                         </Link>
                     </div>
