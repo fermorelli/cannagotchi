@@ -85,23 +85,26 @@ export const SinglePlant = () => {
     }
 
     const eht = () => {
-        // switch(plant.genetic){
-        //     case 'Indica':
-        //     const result = new Date(numberDate + 180)
-        //     const resultDate = result.toLocaleDateString('en-GB');
-        //     <p>{resultDate}</p>
-        //     break;
-        // }
         if(plant.genetic==='Indica'){
             const result = new Date(miliGerDate + 15552000000)
             const resultDate = result.toLocaleDateString('en-GB');
             return <p>{resultDate}</p>
         }else if(plant.genetic==='Sativa'){
-            const result = new Date(miliGerDate + 20736000000)
+            const result = new Date(miliGerDate + 19008000000)
+            const resultDate = result.toLocaleDateString('en-GB');
+            return <p>{resultDate}</p>
+        }else if(plant.genetic==='Sativa-dominating breed'){
+            const result = new Date(miliGerDate + 17280000000)
+            const resultDate = result.toLocaleDateString('en-GB');
+            return <p>{resultDate}</p>
+        }else if(plant.genetic==='Indica-dominating breed'){
+            const result = new Date(miliGerDate + 16416000000)
             const resultDate = result.toLocaleDateString('en-GB');
             return <p>{resultDate}</p>
         }
     }
+
+    //idear una forma de que haya un tope natural, es decir, ninguna planta puede cosecharse despues del 1 de junio, un condicional que evalue el tiempo que paso desde que se germino o que incluya un tope, la condicion a evaluar sigue siendo la fecha de germinacion
 
     return (
         <>
