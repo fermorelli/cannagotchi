@@ -70,7 +70,7 @@ export const AddPlant = ()=> {
                     <Link to={'/plants'}>
                         <button onClick={handleClose}>Go back</button>
                     </Link>
-                    <Link to={'/add-user'}>
+                    <Link to={'/add-plant'}>
                         <span onClick={handleClose}>Add another plant</span>
                     </Link>
                 </div>
