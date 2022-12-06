@@ -20,14 +20,14 @@ export const SignUp = ()=> {
     const [ fetching, isFetching ] =useState(false);
     const [ errmsg, setErrmsg ] = useState('');
 
-    const { regNew } = useAuth();
+    const { regNew, isLogged } = useAuth();
 
     const addUser = ()=>{
 
         const auth = localStorage.getItem('auth');
 
         auth === 'auth' ?
-        fetch('http://localhost:8080', {
+        fetch('http://localhost:8080/users', {
             method: 'POST',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
@@ -67,6 +67,7 @@ export const SignUp = ()=> {
         regNew(email,password)
             .then(()=>{
                 addUser();
+                isLogged(true)
                 isFetching(false);
             })
         }
@@ -77,6 +78,7 @@ export const SignUp = ()=> {
         setLastName('');
         setEmail('');
         setPassword('');
+        isLogged(false)
     }
 
     const { register, handleSubmit, formState: { errors } } = useForm({

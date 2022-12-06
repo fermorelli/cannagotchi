@@ -7,7 +7,7 @@ import { schema } from './validations';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useAuth } from '../../context/authContext';
 
-export const AddPlant = ({props})=> {
+export const AddPlant = ()=> {
 
     const [ plantName, setPlantName ] = useState('');
     const [ genetic, setGenetic ] = useState('');
@@ -17,7 +17,7 @@ export const AddPlant = ({props})=> {
     const [ isOpen, setIsOpen ] = useState(false);
     const [ success, isSuccess ] = useState(false);
 
-    const { authUser, setChange, change } = useAuth();
+    const { authUser, setChange } = useAuth();
 
     const addPlant = (e)=>{
         e.preventDefault();

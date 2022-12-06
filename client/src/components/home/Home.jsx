@@ -16,6 +16,7 @@ export const Home = ()=>{
     useEffect(()=>{
         plants && setMyPlants(plants.filter(plant => plant.user_id === authUser?._id))
     }, [plants])
+    console.log(user,authUser);
 
     return (
         <>
@@ -45,7 +46,13 @@ export const Home = ()=>{
                         {!showing ? <AiOutlineEye onClick={()=>{isShowing(true)}} /> : <AiOutlineEyeInvisible onClick={()=>{isShowing(false)}} />}
                     </div>
                     <span>Plants</span>
-                    <p>{myPlants?.length}</p>
+                    {myPlants.length > 0 ? <p>{myPlants.length}</p> :
+                        <p className="data">{"No plants yet, "}
+                            <Link to={'/add-plant'}>
+                                <span className="link"> add a new one!</span>
+                            </Link>
+                        </p>
+                    }
                 </div>
             </div>
         </div>

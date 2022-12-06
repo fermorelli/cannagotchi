@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import Modal from '../modal/modal';
-import { Link, useParams, useNavigate  } from 'react-router-dom';
+import { useParams, useNavigate  } from 'react-router-dom';
 import '../adduser/adduser.css'
 import { appendErrors, useForm } from 'react-hook-form';
-import { schema } from '../addplant/validations';
+import { schema } from './validations';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useAuth } from '../../context/authContext';
 
@@ -33,22 +33,6 @@ export const EditPlant = ()=> {
         getPlant()
     },[])
 
-    const handleClose = ()=>{
-        setIsOpen(false);
-        setPlantName('');
-        setGenetic('');
-        setDate('');
-        setGrowMode('');
-        setAuto(false);
-        setEdit(false);
-        navigate(-1);
-    }
-
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        mode: 'onBlur',
-        resolver: joiResolver(schema)
-    });
-
     const editPlant = (e)=>{
         e.preventDefault();
 
@@ -77,6 +61,23 @@ export const EditPlant = ()=> {
             });
     }
 
+    const handleClose = ()=>{
+        setIsOpen(false);
+        setPlantName('');
+        setGenetic('');
+        setDate('');
+        setGrowMode('');
+        setAuto(false);
+        setEdit(false);
+        navigate(-1);
+    }
+
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        mode: 'onBlur',
+        resolver: joiResolver(schema)
+    });
+
+
     return (
         <div className="all">
             {isOpen &&
@@ -92,27 +93,27 @@ export const EditPlant = ()=> {
             <div className="form">
                 <form action="" onSubmit={handleSubmit(editPlant)}>
                     <label htmlFor="">Plant Name</label>
-                    <input type="text" placeholder={plant.plant_name} {...register('plantName')} name="plantName" error={appendErrors.plantName?.message} value={plantName} onChange={(e)=>{setPlantName(e.target.value)}}/>
+                    <input type="text" placeholder={plant.plant_name} {...register('plantName')} name="plantName" error={appendErrors.plantName?.message}value={plantName} onChange={(e)=>{setPlantName(e.target.value)}}/>
                         {errors.plantName && <span>{errors.plantName?.message}</span>}
                     <label htmlFor="">Genetic Family</label>
-                    <select name="genetic" {...register('genetic')} error={appendErrors.genetic?.message} value={genetic} onChange={(e)=>{setGenetic(e.target.value)}}>
-                        <option value="" selected disabled hidden>{plant.genetic}</option>
+                    <select name="genetic" value={genetic} {...register('genetic')} error={appendErrors.genetic?.message} onChange={(e)=>{setGenetic(e.target.value)}}>
+                        <option value={plant.genetic} selected disabled hidden>{plant.genetic}</option>
                         <option value="Indica">Indica</option>
                         <option value="Indica-dominating breed">Indica-dominating breed</option>
                         <option value="Sativa">Sativa</option>
                         <option value="Sativa-dominating breed">Sativa-dominating breed</option>
                     </select>
                     <label htmlFor="">Grow mode</label>
-                    <select name="genetic" {...register('growMode')} error={appendErrors.growMode?.message} value={growMode} onChange={(e)=>{setGrowMode(e.target.value)}}>
-                        <option value="" selected disabled hidden>{plant.grow_mode}</option>
+                    <select name="genetic" value={growMode} {...register('growMode')} error={appendErrors.growMode?.message}  onChange={(e)=>{setGrowMode(e.target.value)}}>
+                        <option value={plant.grow_mode} selected disabled hidden>{plant.grow_mode}</option>
                         <option value="Exterior">Exterior</option>
                         <option value="Interior">Interior</option>
                     </select>
                     <label htmlFor="">Germination date</label>
-                    <input type="date" {...register('date')} name="date" error={appendErrors.date?.message} value={date} onChange={(e)=>{setDate(e.target.value)}}/>
+                    <input type="date" name="date" value={date} {...register('date')} error={appendErrors.date?.message} onChange={(e)=>{setDate(e.target.value)}}/>
                     <div className='auto'>
                         <label htmlFor="">Auto</label>
-                        <input type="checkbox" {...register('auto')} name="auto" error={appendErrors.auto?.message} value={auto} onChange={(e)=>{setAuto(e.target.value)}}/>
+                        <input type="checkbox" name="auto" value={auto}{...register('auto')} error={appendErrors.auto?.message}onChange={(e)=>{setAuto(e.target.value)}}/>
                     </div>
                     <div className='formButtons'>
                         <button action="submit" type="submit" onClick={editPlant}>Update</button>
