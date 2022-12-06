@@ -98,7 +98,7 @@ export const AddPlant = ()=> {
                         <option value="Interior">Interior</option>
                     </select>
                     <label htmlFor="">Germination date</label>
-                    <input type="date" {...register('date')} name="date" error={appendErrors.date?.message} value={date} onChange={(e)=>{setDate(e.target.value)}}/>
+                    <input type="date" min='2022-09-01' {...register('date')} name="date" error={appendErrors.date?.message} value={date} onChange={(e)=>{setDate(e.target.value)}}/>
                     <div className='auto'>
                         <label htmlFor="">Auto</label>
                         <input type="checkbox" {...register('auto')} name="auto" error={appendErrors.auto?.message} value={auto} onChange={(e)=>{setAuto(e.target.value)}}/>

@@ -5,9 +5,12 @@ import { BsFillPencilFill } from 'react-icons/bs';
 import { GoTrashcan } from 'react-icons/go'
 import Modal from "../modal/modal";
 import './singleplant.css';
-import planta from '../../assets/planta.jpg'
 import sprite1 from '../../assets/sprite1.jpg'
 import sprite2 from '../../assets/sprite2.jpg'
+import sprite3 from '../../assets/sprite3.jpg'
+import sprite4 from '../../assets/sprite4.jpg'
+import sprite5 from '../../assets/sprite5.jpg'
+import sprite6 from '../../assets/sprite6.jpg'
 
 export const SinglePlant = () => {
     const [ plant, setPlant ] = useState({});
@@ -64,18 +67,41 @@ export const SinglePlant = () => {
     const todayDate = Date.now();
     const passedTime = (todayDate - miliGerDate) / (1000 * 3600 * 24);
 
-    const wichSprite = ()=>{
-        if(passedTime>=0 && passedTime<=30){
-            return <img id="plant" src={sprite1} alt="plant icon" />
-        }else if(passedTime>=30 && passedTime<=60){
-            return <img id="plant" src={sprite2} alt="plant icon" />
-        }else{
-            return <img id="plant" src={planta} alt="plant icon" />
-        }
+
+    const wichSprite = () => {
+            if(passedTime>=0 && passedTime<=30){
+                return <img id="plant" src={sprite1} alt="plant icon" />
+            } else if(passedTime>=30 && passedTime<=60){
+                return <img id="plant" src={sprite2} alt="plant icon" />
+            } else if(passedTime>=60 && passedTime<=90){
+                return <img id="plant" src={sprite3} alt="plant icon" />
+            } else if(passedTime>=90 && passedTime<=120){
+                return <img id="plant" src={sprite4} alt="plant icon" />
+            } else if(passedTime>=120 && passedTime<=180){
+                return <img id="plant" src={sprite5} alt="plant icon" />
+            } else if(passedTime>=180){
+                return <img id="plant" src={sprite6} alt="plant icon" />
+            }
     }
 
-    //actualizar a una estructura switch con todos los casos
-
+    const eht = () => {
+        // switch(plant.genetic){
+        //     case 'Indica':
+        //     const result = new Date(numberDate + 180)
+        //     const resultDate = result.toLocaleDateString('en-GB');
+        //     <p>{resultDate}</p>
+        //     break;
+        // }
+        if(plant.genetic==='Indica'){
+            const result = new Date(miliGerDate + 15552000000)
+            const resultDate = result.toLocaleDateString('en-GB');
+            return <p>{resultDate}</p>
+        }else if(plant.genetic==='Sativa'){
+            const result = new Date(miliGerDate + 20736000000)
+            const resultDate = result.toLocaleDateString('en-GB');
+            return <p>{resultDate}</p>
+        }
+    }
 
     return (
         <>
@@ -90,6 +116,7 @@ export const SinglePlant = () => {
                 </div>
             </Modal>}
         <div className="all_plant">
+            {/* <button onClick={()=>{console.log('a ver: ', numberDate)}}>aver</button> */}
             <div className="card">
                 <div className="card_header">
                     <h2>{plant.plant_name}</h2>
@@ -118,6 +145,10 @@ export const SinglePlant = () => {
                         <div className="plant_attribute">
                             <h4>Grow mode</h4>
                             <span>{plant.grow_mode}</span>
+                        </div>
+                        <div className="plant_attribute">
+                            <h4>E.H.T</h4>
+                            <span>{eht()}</span>
                         </div>
                     </div>
                 </div>
