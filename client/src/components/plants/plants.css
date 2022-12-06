@@ -9,10 +9,23 @@
     margin: 1rem 0 0 1rem;
  }
 
- .header a{
+ .header {
+   display: flex;
+   align-items: flex-end;
+   justify-content: space-between;
+ }
+
+ .add-plant {
+   padding: 1rem;
+   display: flex;
+   gap: 1rem;
+   align-items: center;
+   font-style: italic;
+   margin-right: 2rem;
+ }
+
+ .add-plant svg {
    transform: scale(2);
-   margin-top: 25px;
-   margin-left: 25px;
  }
 
  .plant_card {
@@ -20,12 +33,12 @@
      flex-direction: column;
      padding: 1rem;
      background-color: rgba(50, 50, 50, 0.4);
-     border-radius: 10px;
+     border-radius: 3px;
  }
 
  .plant_card:hover {
    transform: scale(1.05);
-   background-color: rgba(58, 57, 88, 0.4);
+   background-color: rgba(57, 88, 70, 0.4);
  }
 
  .plant_attribute {
@@ -46,7 +59,7 @@
     margin-top: -3px;
  }
 
- .disabled { 
+ .disabled {
     display: none;
  }
 

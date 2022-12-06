@@ -1,3 +1,12 @@
+.all_plant {
+    margin: 4rem auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
 .button{
     background: var(--color-bg-variant);
 	color: white;
@@ -17,10 +26,29 @@
     padding: 1rem;
     background-color: rgba(50, 50, 50, 0.4);
     border-radius: 10px;
+    width: 75%;
+}
+
+.card_body {
+    display: flex;
 }
 
 .card_header {
     display: flex;
     justify-content: space-between;
     align-content: center;
+}
+
+.card_text {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0 0 2rem;
+}
+
+#plant {
+    width: 500px;
+    height: 500px;
+    border: 5px solid black;
+    border-radius: 5px;
 }

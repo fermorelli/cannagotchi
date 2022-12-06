@@ -18,8 +18,9 @@ export const Plants = ()=>{
         <>
         <div className="header">
             <h1 id="title">My plants</h1>
-            <Link to={'/add-plant'}>
+            <Link to={'/add-plant'} className="add-plant">
                 <AiFillPlusCircle/>
+                <span>add a new plant</span>
             </Link>
         </div>
         {myPlants.length === 0 ? <h2 className="no-plants">You currently don't have any plant added yet, add a new one!</h2> : 
