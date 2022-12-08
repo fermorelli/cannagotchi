@@ -4,6 +4,7 @@ import { useAuth } from "../../context/authContext";
 import { BsFillPencilFill } from 'react-icons/bs';
 import { GoTrashcan } from 'react-icons/go'
 import Modal from "../modal/modal";
+import { Footer } from "../home/footer/Footer";
 import './singleplant.css';
 import sprite1 from '../../assets/sprite1.jpg'
 import sprite2 from '../../assets/sprite2.jpg'
@@ -158,6 +159,7 @@ export const SinglePlant = () => {
             </div>
             <button className='button' onClick={()=>navigate(-1)}>Go back</button>
         </div>
+        <Footer/>
         </>
     )
 };
