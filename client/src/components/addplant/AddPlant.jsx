@@ -6,6 +6,7 @@ import { appendErrors, useForm } from 'react-hook-form';
 import { schema } from './validations';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useAuth } from '../../context/authContext';
+import { Footer } from '../home/footer/Footer';
 
 export const AddPlant = ()=> {
 
@@ -62,6 +63,7 @@ export const AddPlant = ()=> {
     });
 
     return (
+        <>
         <div className="all">
             {isOpen &&
             <Modal setIsOpen={setIsOpen} modalTitle={success===true? "Success" : "Something went wrong"}>
@@ -112,5 +114,7 @@ export const AddPlant = ()=> {
                 </form>
             </div>
         </div>
+        <Footer/>
+        </>
     )
 }

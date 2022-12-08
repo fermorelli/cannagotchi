@@ -1,0 +1,40 @@
+.landing-header {
+    display: flex;
+    flex-direction: column;
+}
+
+#link {
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.all_home {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.all-landing {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main_home {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.p-banner{
+    width: 50%;
+    margin: -24rem 0 0 8.5rem;
+}
+
+.about {
+    padding: 2rem;
+    height: 100vh;
+    margin-top: 15%;
+}

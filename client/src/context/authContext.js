@@ -43,6 +43,7 @@ export const AuthProvider = ({children})=>{
             try{
                 const finding = usuario => usuario.email === user?.email
                 setAuthUser(users.find(finding));
+                console.log('authuser: ', authUser)
             }catch(e){
                 console.log(e.message)
             }

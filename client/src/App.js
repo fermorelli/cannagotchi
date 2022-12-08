@@ -11,6 +11,7 @@ import { Plants } from './components/plants/plants';
 import { AddPlant } from './components/addplant/AddPlant';
 import { SinglePlant } from './components/singleplant/SinglePlant';
 import { EditPlant } from './components/editplant/EditPlant';
+import { Landing } from './components/landing/Landing';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <Router basename={process.env.PUBLIC_URL}>
           <Nav />
             <Routes>
-              <Route path='/' element={<Home />} exact></Route>
+              <Route path='/' element={<Landing />} exact></Route>
+              <Route path='/home' element={<Home />} exact></Route>
               <Route path='/login' element={<LogIn />} exact></Route>
               <Route path='/signup' element={<SignUp />} exact></Route>
               <Route path='/users' element={<UserList />} exact></Route>

@@ -41,7 +41,7 @@ export const Nav = ()=>{
                 </Link>
                 {user ?
                     <>
-                        <Link to={'/'}>Home</Link>
+                        <Link to={'/home'}>Home</Link>
                         {/* <Link to={'/users'}>Users</Link>
                         <Link to={'/add-user'}>Add User</Link> */}
                         <Link to={'/plants'}>My Plants</Link>

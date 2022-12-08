@@ -7,6 +7,7 @@ import { schema } from '../adduser/validations';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useAuth } from '../../context/authContext';
 import { Loader } from '../loader/loader';
+import { Footer } from '../home/footer/Footer';
 
 
 export const SignUp = ()=> {
@@ -94,7 +95,7 @@ export const SignUp = ()=> {
             <Modal setIsOpen={setIsOpen} modalTitle={success===true? "Success" : "Something went wrong"}>
                 <p>{success ? "New account created" : null}</p>
                 <div className='addModalButtons'>
-                    <Link to={'/'}>
+                    <Link to={'/home'}>
                         <button onClick={handleClose}>Go back</button>
                     </Link>
                 </div>
@@ -126,6 +127,7 @@ export const SignUp = ()=> {
                 </form>
             </div>
         </div>
+        <Footer />
         </>
     )
 }

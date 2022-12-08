@@ -3,6 +3,7 @@ import Modal from '../modal/modal';
 import { useParams, useNavigate  } from 'react-router-dom';
 import './editUser.css'
 import { useEffect } from 'react';
+import { Footer } from '../home/footer/Footer';
 
 export const EditUser = ()=> {
 
@@ -67,6 +68,7 @@ export const EditUser = ()=> {
     }
 
     return (
+        <>
         <div className="all">
             {isOpen &&
             <Modal setIsOpen={setIsOpen} modalTitle={success===true? "Success" : "Something went wrong"}>
@@ -94,7 +96,8 @@ export const EditUser = ()=> {
                     </div>
                 </form>
             </div>
-
         </div>
+        <Footer/>
+        </>
     )
 }

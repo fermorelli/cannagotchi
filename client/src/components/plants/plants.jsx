@@ -3,7 +3,7 @@ import { useAuth } from "../../context/authContext";
 import { AiFillPlusCircle } from 'react-icons/ai'
 import { Link } from "react-router-dom";
 import './plants.css'
-import { BsTypeH2 } from "react-icons/bs";
+import { Footer } from "../home/footer/Footer";
 
 export const Plants = ()=>{
 
@@ -52,6 +52,7 @@ export const Plants = ()=>{
             )
         })}
     </div>}
-        </>
+    <Footer />
+    </>
     )
 };

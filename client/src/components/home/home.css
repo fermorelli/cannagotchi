@@ -1,5 +1,5 @@
 .header {
-    margin: 2rem 0 0 2rem;
+    margin: 2rem 0 2rem 2rem;
 }
 
 .body {
@@ -10,7 +10,6 @@
     display: flex;
     flex-direction: column;
     width: 50%;
-    margin-top: 2rem;
     margin-left: 2rem;
     background-color: rgba(50, 50, 50, 0.5);
     padding: 1rem;
@@ -55,27 +54,6 @@
 .link {
     text-decoration: underline;
 }
-
-.landing-header {
-    display: flex;
-    flex-direction: column;
-}
-
-.main {
-
-}
-
-#link {
-    font-style: italic;
-    text-decoration: underline;
-}
-
-.all-landing {
-    width: 100%;
-    margin: 0;
-}
-
-.p-banner{
-    width: 50%;
-    margin: -24rem 0 0 8.5rem;
+.all_home{
+   height: 75vh;
 }

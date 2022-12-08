@@ -18,3 +18,7 @@
     color: red;
     margin-bottom: 1rem;
 }
+
+.all {
+    min-height: 65vh;
+}

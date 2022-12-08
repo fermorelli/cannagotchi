@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useAuth } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
 import { Loader } from '../loader/loader';
+import { Footer } from '../home/footer/Footer';
 
 export const LogIn = ()=>{
 
@@ -36,7 +37,7 @@ export const LogIn = ()=>{
             }
             isFetching(false)
             if(auth==='auth'){
-                navigate('/')
+                navigate('/home')
             }else{
                 evalAuth();
             }
@@ -64,6 +65,7 @@ export const LogIn = ()=>{
                 <button action="submit" type='submit' onClick={logIn}>Log in</button>
             </form>
         </div>
+        <Footer />
         </>
     )
 }

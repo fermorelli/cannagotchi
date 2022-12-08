@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import './home.css';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { BsFillPencilFill } from 'react-icons/bs';
-import banner from '../../assets/banner.png'
+import { Footer } from "./footer/Footer";
 
 export const Home = ()=>{
 
@@ -21,54 +21,46 @@ export const Home = ()=>{
 
     return (
         <>
-        {user && authUser ?
-        <>
-        <div className="header">
-            <h2>Welcome {authUser.firstName} {authUser.lastName}</h2>
-        </div>
-        <div className="body">
-            <div className="user__card">
-                <div className="card__header">
-                    <h3 className="title">My personal profile</h3>
-                    <Link to={`/edit-user/${authUser._id}`}>
-                        <BsFillPencilFill/>
-                    </Link>
-                </div>
-                <div className="fields">
-                    <span>Name</span>
-                    <span className="data">{authUser.firstName}</span>
-                    <span>Last name</span>
-                    <span className="data">{authUser.lastName}</span>
-                    <span>Email</span>
-                    <span className="data">{authUser.email}</span>
-                    <span>Password</span>
-                    <div className="password">
-                        <span className="data">{showing ? authUser.password : '********'}</span>
-                        {!showing ? <AiOutlineEye onClick={()=>{isShowing(true)}} /> : <AiOutlineEyeInvisible onClick={()=>{isShowing(false)}} />}
+        <div className="all_home">
+            {user && authUser &&
+            <>
+            <div className="header">
+                <h2>Welcome {authUser.firstName} {authUser.lastName}</h2>
+            </div>
+            <div className="body">
+                <div className="user__card">
+                    <div className="card__header">
+                        <h3 className="title">My personal profile</h3>
+                        <Link to={`/edit-user/${authUser._id}`}>
+                            <BsFillPencilFill/>
+                        </Link>
                     </div>
-                    <span>Plants</span>
-                    {myPlants.length > 0 ? <p>{myPlants.length}</p> :
-                        <p className="data">{"No plants yet, "}
-                            <Link to={'/add-plant'}>
-                                <span className="link"> add a new one!</span>
-                            </Link>
-                        </p>
-                    }
+                    <div className="fields">
+                        <span>Name</span>
+                        <span className="data">{authUser.firstName}</span>
+                        <span>Last name</span>
+                        <span className="data">{authUser.lastName}</span>
+                        <span>Email</span>
+                        <span className="data">{authUser.email}</span>
+                        <span>Password</span>
+                        <div className="password">
+                            <span className="data">{showing ? authUser.password : '********'}</span>
+                            {!showing ? <AiOutlineEye onClick={()=>{isShowing(true)}} /> : <AiOutlineEyeInvisible onClick={()=>{isShowing(false)}} />}
+                        </div>
+                        <span>Plants</span>
+                        {myPlants.length > 0 ? <p>{myPlants.length}</p> :
+                            <p className="data">{"No plants yet, "}
+                                <Link to={'/add-plant'}>
+                                    <span className="link"> add a new one!</span>
+                                </Link>
+                            </p>
+                        }
+                    </div>
                 </div>
             </div>
+            </>}
         </div>
-        </> :
-        <>
-        <div className="all-landing">
-        <img id="banner" src={banner} alt="cannagotchi banner" />
-            <div className="p-banner">
-                <p>We aim to provide you with a complete set of tracking tools that will help you maintain a delicate control of your crops. We provide a full detailed information about each one of your plants, as well as a prediction system that will help you remember harvest dates, cycles, and much more!</p>
-                <br/>
-                <p>Wanna join in? Start by making a <Link to={'/signup'}><span id="link">new account</span></Link></p>
-            </div>
-        </div>
-        </>
-        }
+        <Footer />
         </>
     )
 }
