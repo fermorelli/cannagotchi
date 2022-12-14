@@ -3,7 +3,7 @@ import { useAuth } from "../../context/authContext";
 import { AiFillPlusCircle } from 'react-icons/ai'
 import { Link } from "react-router-dom";
 import './plants.css'
-import { Footer } from "../home/footer/Footer";
+import { Footer } from '../footer/Footer';
 
 export const Plants = ()=>{
 

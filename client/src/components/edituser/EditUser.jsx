@@ -3,7 +3,7 @@ import Modal from '../modal/modal';
 import { useParams, useNavigate  } from 'react-router-dom';
 import './editUser.css'
 import { useEffect } from 'react';
-import { Footer } from '../home/footer/Footer';
+import { Footer } from '../footer/Footer';
 
 export const EditUser = ()=> {
 

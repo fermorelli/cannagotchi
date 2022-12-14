@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useAuth } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
 import { Loader } from '../loader/loader';
-import { Footer } from '../home/footer/Footer';
+import { Footer } from '../footer/Footer';
 
 export const LogIn = ()=>{
 

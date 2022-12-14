@@ -12,6 +12,7 @@ import { AddPlant } from './components/addplant/AddPlant';
 import { SinglePlant } from './components/singleplant/SinglePlant';
 import { EditPlant } from './components/editplant/EditPlant';
 import { Landing } from './components/landing/Landing';
+import { Faqs } from './components/faqs/Faqs';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
               <Route path='/plants/:id' element={<SinglePlant />} exact></Route>
               <Route path='/add-plant' element={<AddPlant />} exact></Route>
               <Route path='/edit-plant/:id' element={<EditPlant />} exact></Route>
+              <Route path='/faqs' element={<Faqs />} exact></Route>
             </Routes>
           </Router>
       </AuthProvider>

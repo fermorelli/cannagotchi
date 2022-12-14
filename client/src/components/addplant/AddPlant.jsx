@@ -6,7 +6,7 @@ import { appendErrors, useForm } from 'react-hook-form';
 import { schema } from './validations';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useAuth } from '../../context/authContext';
-import { Footer } from '../home/footer/Footer';
+import { Footer } from '../footer/Footer';
 
 export const AddPlant = ()=> {
 

@@ -1,7 +1,7 @@
 import banner from '../../assets/banner.png';
 import './landing.css';
 import { Link } from 'react-router-dom';
-import { Footer } from '../home/footer/Footer';
+import { Footer } from '../footer/Footer';
 
 export const Landing = () => {
     return (

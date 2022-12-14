@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import './home.css';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { BsFillPencilFill } from 'react-icons/bs';
-import { Footer } from "./footer/Footer";
+import { Footer } from '../footer/Footer';
 
 export const Home = ()=>{
 

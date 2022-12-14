@@ -7,7 +7,7 @@ import { schema } from '../adduser/validations';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useAuth } from '../../context/authContext';
 import { Loader } from '../loader/loader';
-import { Footer } from '../home/footer/Footer';
+import { Footer } from '../footer/Footer';
 
 
 export const SignUp = ()=> {

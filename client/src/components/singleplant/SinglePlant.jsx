@@ -4,7 +4,7 @@ import { useAuth } from "../../context/authContext";
 import { BsFillPencilFill } from 'react-icons/bs';
 import { GoTrashcan } from 'react-icons/go'
 import Modal from "../modal/modal";
-import { Footer } from "../home/footer/Footer";
+import { Footer } from "../footer/Footer";
 import './singleplant.css';
 import sprite1 from '../../assets/sprite1.jpg'
 import sprite2 from '../../assets/sprite2.jpg'
