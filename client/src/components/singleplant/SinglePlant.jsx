@@ -5,6 +5,10 @@ import { BsFillPencilFill } from 'react-icons/bs';
 import { GoTrashcan } from 'react-icons/go'
 import Modal from "../modal/modal";
 import { Footer } from "../footer/Footer";
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
+import 'tippy.js/themes/material.css';
+import 'tippy.js/animations/scale.css';
 import './singleplant.css';
 import sprite1 from '../../assets/sprite1.jpg'
 import sprite2 from '../../assets/sprite2.jpg'
@@ -105,6 +109,12 @@ export const SinglePlant = () => {
         }
     }
 
+    tippy('#tooltip', {
+        content: "Estimated Harvest Time",
+        placement: "bottom-end",
+        animation: "scale"
+      });
+
     //idear una forma de que haya un tope natural, es decir, ninguna planta puede cosecharse despues del 1 de junio, un condicional que evalue el tiempo que paso desde que se germino o que incluya un tope, la condicion a evaluar sigue siendo la fecha de germinacion
 
     return (
@@ -151,7 +161,7 @@ export const SinglePlant = () => {
                             <span>{plant.grow_mode}</span>
                         </div>
                         <div className="plant_attribute">
-                            <h4>E.H.T</h4>
+                            <h4 id='tooltip'>E.H.T</h4>
                             <span>{eht()}</span>
                         </div>
                     </div>

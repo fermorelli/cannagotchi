@@ -7,6 +7,7 @@
     grid-template-columns: repeat(4,1fr);
     gap: 2rem;
     margin: 1rem 0 2rem 1rem;
+    min-height: 60vh;
  }
 
  .header {
@@ -65,4 +66,5 @@
 
  .no-plants {
    margin: 2rem 0 0 2rem;
+   min-height: 60vh;
  }
