@@ -2,6 +2,8 @@ import banner from '../../assets/banner.png';
 import './landing.css';
 import { Link } from 'react-router-dom';
 import { Footer } from '../footer/Footer';
+import img1 from '../../assets/img1.jpg';
+import img2 from '../../assets/img2.webp';
 
 export const Landing = () => {
     return (
@@ -20,9 +22,26 @@ export const Landing = () => {
                         <h1>About Cannagotchi</h1>
                     </div>
                     <div className="about_body">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius neque reiciendis placeat inventore molestias similique minima aut ab eum quidem perspiciatis corporis porro quasi officiis, delectus vel perferendis non error.</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius neque reiciendis placeat inventore molestias similique minima aut ab eum quidem perspiciatis corporis porro quasi officiis, delectus vel perferendis non error.</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius neque reiciendis placeat inventore molestias similique minima aut ab eum quidem perspiciatis corporis porro quasi officiis, delectus vel perferendis non error.</p>
+                        <div className="text_img">
+                            <div className="text">
+                                <p>Cannagotchi is a tracking app that allows you to add your plants to a collection, and then retrieve that information in a way that's very useful to the user experience, since is really easy to read and to handle. You will have the chance to check on that data to maintain a very detailed control over your crops.</p>
+                                <br />
+                                <p>Cannagotchi is a tracking app that allows you to add your plants to a collection, and then retrieve that information in a way that's very useful to the user experience, since is really easy to read and to handle. You will have the chance to check on that data to maintain a very detailed control over your crops. Cannagotchi is a tracking app that allows you to add your plants to a collection, and then retrieve that information in a way that's very useful to the user experience, since is really easy to read and to handle. You will have the chance to check on that data to maintain a very detailed control over your crops.</p>
+                                <br />
+                                <p>Cannagotchi is a tracking app that allows you to add your plants to a collection, and then retrieve that information in a way that's very useful to the user experience, since is really easy to read and to handle. You will have the chance to check on that data to maintain a very detailed control over your crops.</p>
+                            </div>
+                            <img src={img1} alt="tracking app" />
+                        </div>
+                        <div className="text_img">
+                            <img src={img2} id={'img2'} alt="tracking app" />
+                            <div className="text">
+                                <p>Cannagotchi is a tracking app that allows you to add your plants to a collection, and then retrieve that information in a way that's very useful to the user experience, since is really easy to read and to handle. You will have the chance to check on that data to maintain a very detailed control over your crops.</p>
+                                <br />
+                                <p>Cannagotchi is a tracking app that allows you to add your plants to a collection, and then retrieve that information in a way that's very useful to the user experience, since is really easy to read and to handle. You will have the chance to check on that data to maintain a very detailed control over your crops. Cannagotchi is a tracking app that allows you to add your plants to a collection, and then retrieve that information in a way that's very useful to the user experience, since is really easy to read and to handle. You will have the chance to check on that data to maintain a very detailed control over your crops.</p>
+                                <br />
+                                <p>Cannagotchi is a tracking app that allows you to add your plants to a collection, and then retrieve that information in a way that's very useful to the user experience, since is really easy to read and to handle. You will have the chance to check on that data to maintain a very detailed control over your crops.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
         </div>
