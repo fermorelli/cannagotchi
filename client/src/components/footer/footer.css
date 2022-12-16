@@ -16,5 +16,11 @@
 
 .socials {
     display: flex;
-    gap: rem;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+}
+
+.copyright {
+    font-size: 0.7rem;
+    font-style: italic;
 }

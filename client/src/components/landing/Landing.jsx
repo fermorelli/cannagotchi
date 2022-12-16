@@ -17,7 +17,7 @@ export const Landing = () => {
                         <p>Wanna join in? Start by making a <Link to={'/signup'}><span id="link">new account</span></Link></p>
                     </div>
                 </div>
-                <div className="about">
+                <div className="about" id='about'>
                     <div className="about_header">
                         <h1>About Cannagotchi</h1>
                     </div>
