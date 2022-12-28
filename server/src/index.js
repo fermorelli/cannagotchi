@@ -1,7 +1,7 @@
 import mongoose, { mongo } from 'mongoose';
 import app from './app.js';
 
-mongoose.connect('mongodb://localhost:27017/crud', (error) => {
+mongoose.connect("mongodb+srv://ilcosme:35293fcm@crud.pkoeg6y.mongodb.net/crud", (error) => {
   const port = 8080;
     if (error) {
       console.log('Fail to connect', error);
@@ -15,3 +15,5 @@ mongoose.connect('mongodb://localhost:27017/crud', (error) => {
 );
 
 export default mongoose;
+
+
