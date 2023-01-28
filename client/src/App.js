@@ -1,6 +1,6 @@
-import { AddUser } from './components/adduser/AddUser';
+import { AddUser } from './components/addUser/AddUser';
 import { EditUser } from './components/edituser/EditUser';
-import { UserList } from './components/userlist/UserList';
+import { UserList } from './components/userList/UserList';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Nav } from './components/nav/nav';
 import { LogIn } from './components/login/LogIn';

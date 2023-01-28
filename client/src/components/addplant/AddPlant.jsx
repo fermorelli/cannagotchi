@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Modal from '../modal/modal';
 import { Link } from 'react-router-dom';
-import '../adduser/adduser.css'
+import '../addUser/adduser.css';
 import { appendErrors, useForm } from 'react-hook-form';
 import { schema } from './validations';
 import { joiResolver } from '@hookform/resolvers/joi';

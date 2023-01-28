@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import Modal from '../modal/modal';
 import { Link } from 'react-router-dom';
-import '../adduser/adduser.css'
+import '../addUser/adduser.css';
 import { appendErrors, useForm } from 'react-hook-form';
-import { schema } from '../adduser/validations';
+import { schema } from '../addUser/validations';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useAuth } from '../../context/authContext';
 import { Loader } from '../loader/loader';
